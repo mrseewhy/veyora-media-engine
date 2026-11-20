@@ -1,9 +1,20 @@
 # Veyora Media Engine
 
-Local-first media production management application for **ToolPilot Daily**, a Veyora House media brand.
+Local-first media production application for **ToolPilot Daily**.
 
-Status: **foundation in development**. See `docs/Plan.md`, `docs/PRD.md`, `docs/Tasks.md`, `docs/DesignSystem.md`, and `docs/Automation.md` for the implementation scope.
+**Status:** Foundation in progress. Autonomous publishing, AI research, and video generation are **not yet implemented**.
 
-Stack: Laravel + Inertia/React, SQLite, Python worker, Remotion and FFmpeg. No paid service or publishing account required for the initial development environment.
+## Direction
+- Management app: Laravel 12, Inertia React, Tailwind CSS 4, SQLite, database queue.
+- Processing: local Python worker for research/AI/voice; Remotion + FFmpeg for video composition.
+- Production: research → evidence verification → script/storyboard → narration/assets → render → QA → approval → platform-specific export → approved publish.
+- v1: one ToolPilot Daily brand, one 30–60 second template-driven video per production cycle.
 
-> Do not assume autonomous posting, generative footage, or production-quality fact verification is implemented until corresponding milestones and acceptance tests have passed.
+## Project docs
+- [Plan](docs/Plan.md)
+- [Product requirements](docs/PRD.md)
+- [Implementation tasks](docs/Tasks.md)
+- [Design system](docs/DesignSystem.md)
+- [Automation contract](docs/Automation.md)
+
+All external credentials belong only in local environment variables or encrypted local configuration, never in Git. No publishing is enabled by default.
