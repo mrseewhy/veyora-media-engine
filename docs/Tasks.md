@@ -1,5 +1,17 @@
 # Implementation Tasks
 
+## Production Intelligence v1
+- [x] Add additive PostgreSQL/Drizzle migrations for episodes, render versions, scene feedback, production lessons, evaluation runs and lesson applications.
+- [x] Verify the existing local `DATABASE_URL` connection and apply migrations.
+- [x] Add CLI workflows for whole-video and scene feedback, render comparison and approval status.
+- [x] Extract repeated problems as candidate lessons; require human approval before retrieval as production guidance.
+- [x] Record approved lesson use in script or storyboard planning context for a specific episode version.
+- [x] Keep automated technical QA separate from human creative and factual scores.
+- [x] Test the cross-episode feedback-to-lesson workflow in a rolled-back PostgreSQL transaction.
+- [ ] Integrate approved lesson context with a future script/storyboard generator when one exists.
+- [ ] Add multi-user authorization and operator identity checks before a shared dashboard is built.
+
+
 ## AI Agents in 100 Seconds — current review gate
 - [x] Preserve the 10-second latency composition and add a regression test for its 300-frame evidence story.
 - [x] Write a complete 100-second script and storyboard proposal; keep 30–100 seconds marked planned.

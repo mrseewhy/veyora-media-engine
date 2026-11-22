@@ -18,21 +18,28 @@
     "scene:studio": "remotion studio remotion/index.ts",
     "typecheck:remotion": "tsc -p remotion/tsconfig.json",
     "agents:render": "npm run build && node dist/packages/renderer/src/render-agents-preview.js",
-    "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js"
+    "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "intelligence": "npm run build && node dist/packages/intelligence/src/cli.js"
   },
   "devDependencies": {
     "@ffmpeg-installer/darwin-arm64": "^4.1.5",
     "@ffprobe-installer/darwin-arm64": "^5.0.1",
     "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "drizzle-kit": "^0.31.11",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@google/genai": "^3.6.1",
     "@remotion/cli": "^4.0.545",
     "@remotion/media": "^4.0.545",
+    "drizzle-orm": "^0.45.4",
     "kokoro-js": "^1.2.1",
+    "pg": "^8.23.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "remotion": "^4.0.545",

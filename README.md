@@ -38,6 +38,11 @@ Remotion is now the visual layer for the proof. Its licence was reviewed for thi
 - [Licensing](docs/Licensing.md)
 - [AI Agents episode script and storyboard](docs/AgentsEpisode.md)
 - [AI Agents asset attribution](docs/AgentsAssetManifest.md)
+- [Production Intelligence v1](docs/ProductionIntelligence.md)
+
+## Production Intelligence v1
+
+The local PostgreSQL + Drizzle layer stores episodes, render versions, scene or whole-video feedback, reviewed production lessons and evaluation history. It uses the existing storyboard IDs and QA artifacts. Run `npm run db:migrate`, then `npm run intelligence -- db check`. Feedback and lesson commands are documented in [Production Intelligence v1](docs/ProductionIntelligence.md). The visual renderer and narration workflow are unchanged.
 
 ## First next action
 Review the rendered first 30 seconds of **AI Agents in 100 Seconds** on desktop and mobile. Record visual defects and approve or request changes before implementation of the remaining 70 seconds.
