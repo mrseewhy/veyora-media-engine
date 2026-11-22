@@ -36,17 +36,17 @@ Generated outputs: `data/episodes/<channel-id>/<episode-id>/final/`, `captions/`
 
 ## ToolPilot pilot: AI Agents in 100 Seconds
 - First series: **AI Tools in 100 Seconds**; first episode: **AI Agents in 100 Seconds**.
-- Deliver a full, watchable, accurate 100-second episode, **not** the existing 0–30s preview.
+- Deliver a full, watchable, accurate episode with **100–120 seconds of narrated content, plus a 5-second intro and 8-second outro** (113–133 seconds total), **not** the existing 0–30s preview.
 - Audit `fixtures/storyboards/toolpilot-agents-100s.json`, `remotion/Root.tsx`, `remotion/agents/`, narration scripts and `packages/renderer/src/` before coding.
 - Complete missing original React/SVG scenes while preserving approved opening visuals and the 10-second latency regression.
-- Use the existing voice pipeline and legitimate local/free fallbacks where practical. Never invent narration files or falsely report an available provider.
+- Use the approved Gemini Flash TTS / Puck voice only for ToolPilot. Never silently use a local/free voice fallback. Never invent narration files or falsely report an available provider.
 - Synchronize narration, scenes, captions, transitions, music/SFX; avoid missing scenes, placeholders, clipped audio and offscreen text.
 - Render three full-length formats, SRT, contact sheets, probe/loudness/technical QA and production report. Fix detected defects and rerender affected outputs.
 - Machine checks are not human visual approval. Report any blocked or unverified item explicitly.
 - Current repository caveat: existing `agents:render:all` targets **30-second previews**, and alternate ratios currently fit a landscape canvas. Do not mistake this for the finished responsive 100-second pipeline. The editorial storyboard validator also enforces preview-only assumptions; generalize carefully with regression tests.
 
-## ToolPilot permanent brand-motion rules (approved)
-Read [`docs/ToolPilotBrandMotion.md`](docs/ToolPilotBrandMotion.md) before editing ToolPilot compositions or generating episodes. The **official** ToolPilot logo is `toolpilot-icon.png` at repository root; the legacy arrow `BrandMark` is not the approved logo. **@mytoolpilot** is the public handle. Implement and cache one reusable Remotion intro (2–3s, logo + ToolPilot text) and outro (3–4s, logo + Subscribe/Follow @mytoolpilot). Adapt CTA by platform and layouts by aspect ratio. No persistent in-video watermark, logo, or `TOOLPILOT / 100` overlay during content. The 100-second series budget **includes** intro and outro. No need for manually created montage files: generate the components in code, render once for human approval, then reuse the approved version. This is an approved design contract, **not** a claim that the animations already exist or passed review.
+## ToolPilot permanent brand-motion rules (revised 2026-11-22)
+Read [`docs/ToolPilotBrandMotion.md`](docs/ToolPilotBrandMotion.md) before producing ToolPilot videos. Use official root `toolpilot-icon.png`, not the legacy BrandMark. The existing intro/outro was rejected and must be rebuilt as reusable, versioned components. **Exactly 5s intro** with a tasteful instrumental tune and no voiceover; **100–120s narrated content**; **exactly 8s outro** with music and no voiceover, first 5s animated and final 3s completely still. Total **113–133s**. CTA is Subscribe/Follow **@mytoolpilot** depending on platform. No persistent branding during the content. Render and obtain approval for new bumper previews before reusing them. These rules supersede all prior shorter-bumper and 100-second-total instructions.
 
 ## ToolPilot permanent voice identity (operator-approved)
 Read [`docs/ToolPilotVoice.md`](docs/ToolPilotVoice.md). ToolPilot's approved earlier AI Agents narrator uses **Gemini Flash TTS / Puck**; preserve that voice and delivery style across episodes. The later Claude Code voice was explicitly rejected. Never silently switch TTS provider or voice, even to a free fallback. Generate a short audio sample for approval before full video rendering; preserve and verify the earlier audio reference when accessible. Voice configuration is locked, but original reference WAV has not yet been committed or verified.
