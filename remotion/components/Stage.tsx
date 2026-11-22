@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import type {BrandConfig} from '../../packages/shared/src/storyboard';
-import {theme} from '../theme';
+import {theme, videoLayout} from '../theme';
 import {BrandMark} from './BrandMark';
 
 interface StageProps {
@@ -65,9 +65,9 @@ export const Stage: React.FC<StageProps> = ({
       <div
         style={{
           position: 'absolute',
-          top: 42,
-          left: 64,
-          right: 64,
+          top: videoLayout.safeArea.top,
+          left: videoLayout.safeArea.left,
+          right: videoLayout.safeArea.right,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
