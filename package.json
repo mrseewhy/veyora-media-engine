@@ -16,7 +16,9 @@
     "storyboard:validate": "npm run build && node dist/packages/renderer/src/validate-storyboard.js",
     "scene:render": "npm run build && node dist/packages/renderer/src/render-latency.js",
     "scene:studio": "remotion studio remotion/index.ts",
-    "typecheck:remotion": "tsc -p remotion/tsconfig.json"
+    "typecheck:remotion": "tsc -p remotion/tsconfig.json",
+    "agents:render": "npm run build && node dist/packages/renderer/src/render-agents-preview.js",
+    "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js"
   },
   "devDependencies": {
     "@ffmpeg-installer/darwin-arm64": "^4.1.5",

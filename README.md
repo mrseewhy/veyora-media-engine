@@ -3,7 +3,7 @@
 Local-first video production engine for **ToolPilot** (Veyora House), starting with the **AI Tools in 100 Seconds** series.
 
 ## Status
-**Phase 1 renderer implemented; 10-second latency proof rendered and machine-verified.** The revised 100-second FFmpeg draft still passes its machine checks. The new 10-second Remotion latency scene passes 15/15 automated render checks and 18/18 repository tests. Human visual, factual and brand approval remains pending; do not expand to 30 or 100 seconds until it is approved.
+**The 10-second latency proof remains a regression composition.** A separate 30-second opening preview of **AI Agents in 100 Seconds** is rendered for review. The complete 100-second script and storyboard are drafted; the remaining 70 seconds have not been implemented or rendered.
 
 ## Chosen architecture
 - **CLI + worker:** Node.js, TypeScript
@@ -36,9 +36,25 @@ Remotion is now the visual layer for the proof. Its licence was reviewed for thi
 - [Testing](docs/Testing.md)
 - [Remotion renderer](docs/RemotionRenderer.md)
 - [Licensing](docs/Licensing.md)
+- [AI Agents episode script and storyboard](docs/AgentsEpisode.md)
+- [AI Agents asset attribution](docs/AgentsAssetManifest.md)
 
 ## First next action
-Review the rendered 10-second latency proof on desktop and mobile. Record visual defects and either approve the exact artifact or request changes. Do not start a 30- or 100-second version until that review is complete.
+Review the rendered first 30 seconds of **AI Agents in 100 Seconds** on desktop and mobile. Record visual defects and approve or request changes before implementation of the remaining 70 seconds.
+
+## AI Agents first 30 seconds
+
+The [100-second storyboard](fixtures/storyboards/toolpilot-agents-100s.json) covers the whole episode. Five original editorial scenes cover the first 30 seconds. They use a comic chatbot, a tool-carrying agent, a four-step loop and a kitchen detour. The later scenes remain planned. The earlier `ToolPilotLatency10s` composition and fixture remain unchanged and are covered by regression tests.
+
+```bash
+npm ci
+npm run agents:voice         # Gemini API key in ignored .env; regenerates 0–30s narration
+npm run agents:render        # Remotion render, FFmpeg loudnorm, SRT, QA, contact sheet
+npm test
+npm run typecheck:remotion
+```
+
+Outputs are ignored under `data/agents100/`: `agents-0-30.mp4`, `agents-0-30.srt`, `qa.json`, `contact-sheet.png`, and `asset-manifest.json`. The rendered artifact is 1920×1080, 30 fps, 30 seconds. Review status is `proposed`.
 
 No paid third-party account is required for the initial local renderer proof; future model/API and licensing costs must be checked before use.
 

@@ -1,5 +1,5 @@
 # Storyboard & Scene System
-Status: design/contract specification. Existing code must be audited before implementing; this file does not claim the system exists. Depends on [VideoExperience](VideoExperience.md) and [UserJourney](UserJourney.md).
+Status: the latency contract is implemented in `packages/shared/src/storyboard.ts`. The AI Agents episode extends the shared format, brand, caption and review types with an editorial scene contract in `packages/shared/src/editorial-storyboard.ts`. Its full 100-second plan is validated while only 0–30 seconds is implemented. Depends on [VideoExperience](VideoExperience.md) and [UserJourney](UserJourney.md).
 
 ## Core model
 **Episode** has one journey template and versioned **storyboard**. Storyboard is ordered **beats** (narrative intent) containing one or more **scenes** (visual execution). Scene has timeline, narration reference, visual recipe, real assets, motion, captions, source/evidence and review state. A beat may span several shots. Rendering must not invent a scene type silently.

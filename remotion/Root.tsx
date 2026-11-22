@@ -9,6 +9,9 @@ import {
   LatencyVideo,
   type LatencyVideoProps,
 } from './compositions/LatencyVideo';
+import agentsJson from '../fixtures/storyboards/toolpilot-agents-100s.json';
+import {validateEditorialStoryboard} from '../packages/shared/src/editorial-storyboard';
+import {AgentsPreview} from './agents/AgentsPreview';
 
 const storyboard: Storyboard = validateStoryboard(storyboardJson);
 
@@ -28,11 +31,22 @@ const calculateMetadata: CalculateMetadataFunction<LatencyVideoProps> = ({
 
 export const RemotionRoot: React.FC = () => {
   return (
-    <Composition
-      id="ToolPilotLatency10s"
-      component={LatencyVideo}
-      defaultProps={{storyboard}}
-      calculateMetadata={calculateMetadata}
-    />
+    <>
+      <Composition
+        id="ToolPilotLatency10s"
+        component={LatencyVideo}
+        defaultProps={{storyboard}}
+        calculateMetadata={calculateMetadata}
+      />
+      <Composition
+        id="ToolPilotAgents30s"
+        component={AgentsPreview}
+        defaultProps={{storyboard: validateEditorialStoryboard(agentsJson)}}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={900}
+      />
+    </>
   );
 };

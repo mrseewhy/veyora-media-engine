@@ -1,5 +1,16 @@
 # Implementation Tasks
 
+## AI Agents in 100 Seconds — current review gate
+- [x] Preserve the 10-second latency composition and add a regression test for its 300-frame evidence story.
+- [x] Write a complete 100-second script and storyboard proposal; keep 30–100 seconds marked planned.
+- [x] Build reusable editorial scene components for the opening 30 seconds.
+- [x] Generate Gemini Flash TTS narration for 0–30 seconds, captions, and original sound cues.
+- [x] Render the 30-second H.264/AAC preview and run machine QA.
+- [x] Inspect a contact sheet and revise scene timing to match narration.
+- [ ] Operator reviews the exact 30-second render for storytelling, visual quality, factual framing, captions and brand.
+- [ ] Only after approval, implement and render the remaining 70 seconds.
+
+
 ## Phase 1 — Renderer proof (DO THIS FIRST)
 - [x] Confirm local Node.js, pnpm, FFmpeg/ffprobe and Piper availability; document versions.
 - [ ] Choose an actual ToolPilot episode topic and approve a source-backed 100-second script.

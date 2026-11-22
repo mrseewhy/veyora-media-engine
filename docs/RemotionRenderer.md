@@ -1,6 +1,6 @@
 # Remotion Renderer
 
-Status: implemented for the 10-second latency proof. Remotion 4.0.545 is the visual composition layer; FFmpeg remains the media-processing and QA layer.
+Status: the 10-second latency composition is preserved as a regression baseline. A separate 30-second editorial preview for **AI Agents in 100 Seconds** is also implemented. Remotion remains the visual composition layer; FFmpeg remains the media-processing and QA layer.
 
 ## Why Remotion
 The scene needs a believable developer interface, a request trace that reveals in sync with narration, and frame-accurate camera moves. Remotion lets those elements be React components driven by validated data and the current frame. It does not replace FFmpeg: trimming, silence detection, loudness normalisation, muxing, probing and contact sheets stay in the FFmpeg pipeline.
@@ -48,7 +48,7 @@ remotion/
 Time is integer milliseconds in the fixture. `msToFrame()` is called only at the render boundary. `calculateMetadata()` derives the composition duration from the fixture, so changing the storyboard changes the render length deliberately.
 
 ## Composition
-`ToolPilotLatency10s` is the only registered composition. It renders:
+`ToolPilotLatency10s` is the original registered composition. It renders:
 
 1. the shared `Stage` background, brand header and progress bar;
 2. the narration WAV from `public/generated/latency-narration.wav`, starting at 300 ms;
@@ -57,6 +57,8 @@ Time is integer milliseconds in the fixture. `msToFrame()` is called only at the
 5. the measured `CaptionTrack` above all scenes.
 
 The scene sequence is derived from scene durations: 3,720 ms (ScreenDemo), 4,480 ms (MetricTimeline) and 1,800 ms (Callout). At 30 fps these become 112, 134 and 54 frames, exactly 300 frames.
+
+`ToolPilotAgents30s` is the new review composition. Its 100-second editorial storyboard reuses the format, brand, caption and review types from the existing contract, with scene kinds for the new visual language. Only scenes before 30 seconds may be marked `implemented`; later scenes stay `planned`. The first 30 seconds contain five original code-native illustrations, Gemini narration, captions and synthesized sound cues. Render with `npm run agents:render`; regenerate the take with `npm run agents:voice` using the existing Gemini key. Outputs and asset attribution are in `data/agents100/`. The full script and shot plan are in [AgentsEpisode](AgentsEpisode.md).
 
 ## Motion
 - Camera push-in and a slight pan toward the network panel during the ScreenDemo.
@@ -97,7 +99,7 @@ npm run typecheck:remotion    # TypeScript check for Remotion/React
 - `contact-sheet.png` — ten one-second frames.
 
 ## Current limits
-- One 10-second proof only; no 30- or 100-second expansion until human approval.
+- The new episode has only a 30-second rendered preview; the remaining 70 seconds await approval and implementation.
 - No editor UI, dashboard, database or publishing integration.
 - The assistant interface and response text are simulated, not a real product recording. This is disclosed in-frame and in the storyboard.
 - The measured endpoint is a local demo with a known delay, not a third-party AI provider benchmark.

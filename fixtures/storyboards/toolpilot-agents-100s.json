@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "episodeId": "toolpilot-ai-agents-100s",
+  "storyboardVersion": 1,
+  "journeyTemplate": "concept-explainer",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationMs": 100000
+  },
+  "brand": {
+    "name": "ToolPilot",
+    "tagline": "Smarter Tools. Better Work.",
+    "accent": "#B6F84A"
+  },
+  "review": {
+    "status": "proposed",
+    "notes": [
+      "First 30 seconds ready for review; remaining scenes are editorial plans only."
+    ]
+  },
+  "narration": {
+    "provider": "gemini-flash-tts",
+    "voice": "Puck",
+    "previewAudioPath": "generated/agents-0-30.wav",
+    "previewText": "Ask a chatbot to book a trip, and it may give you a beautiful checklist. Ask an agent, and it can start doing the work. Same brain, very different job description. An AI agent is a model in a loop: it gets a goal, chooses an action, uses a tool, checks the result, and decides what to do next. Think of a chef. A chatbot tells you the recipe. An agent opens the fridge, notices there are no eggs, and changes the plan. That tiny detour is the point: the agent reacts to what it finds.",
+    "captions": [
+      {
+        "id": "a1",
+        "text": "Ask a chatbot to book a trip,",
+        "startMs": 200,
+        "endMs": 1920,
+        "emphasis": [
+          "chatbot"
+        ]
+      },
+      {
+        "id": "a2",
+        "text": "and it may give you a beautiful checklist.",
+        "startMs": 1920,
+        "endMs": 3900,
+        "emphasis": [
+          "checklist"
+        ]
+      },
+      {
+        "id": "a3",
+        "text": "Ask an agent, and it can start doing the work.",
+        "startMs": 3920,
+        "endMs": 6800,
+        "emphasis": [
+          "agent"
+        ]
+      },
+      {
+        "id": "a4",
+        "text": "Same brain, very different job description.",
+        "startMs": 6820,
+        "endMs": 9340,
+        "emphasis": [
+          "different job"
+        ]
+      },
+      {
+        "id": "a5",
+        "text": "An AI agent is a model in a loop:",
+        "startMs": 9340,
+        "endMs": 11730,
+        "emphasis": [
+          "loop"
+        ]
+      },
+      {
+        "id": "a6",
+        "text": "it gets a goal, chooses an action,",
+        "startMs": 11730,
+        "endMs": 14100,
+        "emphasis": [
+          "goal"
+        ]
+      },
+      {
+        "id": "a7",
+        "text": "uses a tool, checks the result,",
+        "startMs": 14100,
+        "endMs": 15850,
+        "emphasis": [
+          "tool"
+        ]
+      },
+      {
+        "id": "a8",
+        "text": "and decides what to do next.",
+        "startMs": 15850,
+        "endMs": 17490,
+        "emphasis": [
+          "next"
+        ]
+      },
+      {
+        "id": "a9",
+        "text": "Think of a chef.",
+        "startMs": 17490,
+        "endMs": 18450,
+        "emphasis": [
+          "chef"
+        ]
+      },
+      {
+        "id": "a10",
+        "text": "A chatbot tells you the recipe.",
+        "startMs": 18450,
+        "endMs": 20260,
+        "emphasis": [
+          "recipe"
+        ]
+      },
+      {
+        "id": "a11",
+        "text": "An agent opens the fridge,",
+        "startMs": 20260,
+        "endMs": 22200,
+        "emphasis": [
+          "agent"
+        ]
+      },
+      {
+        "id": "a12",
+        "text": "notices there are no eggs, and changes the plan.",
+        "startMs": 22200,
+        "endMs": 24770,
+        "emphasis": [
+          "changes the plan"
+        ]
+      },
+      {
+        "id": "a13",
+        "text": "That tiny detour is the point:",
+        "startMs": 24770,
+        "endMs": 26900,
+        "emphasis": [
+          "detour"
+        ]
+      },
+      {
+        "id": "a14",
+        "text": "the agent reacts to what it finds.",
+        "startMs": 26900,
+        "endMs": 28600,
+        "emphasis": [
+          "reacts"
+        ]
+      }
+    ]
+  },
+  "beats": [
+    {
+      "id": "hook",
+      "startMs": 0,
+      "durationMs": 10000,
+      "intent": "Contrast explanation with action",
+      "script": "Ask a chatbot to book a trip, and it may give you a beautiful checklist. Ask an agent, and it can start doing the work. Same brain, very different job description."
+    },
+    {
+      "id": "explanation",
+      "startMs": 10000,
+      "durationMs": 20000,
+      "intent": "Explain the agent loop with a chef analogy",
+      "script": "An AI agent is a model in a loop: it gets a goal, chooses an action, uses a tool, checks the result, and decides what to do next. Think of a chef. A chatbot tells you the recipe. An agent opens the fridge, notices there are no eggs, and changes the plan. That tiny detour is the point: the agent reacts to what it finds."
+    },
+    {
+      "id": "technical",
+      "startMs": 30000,
+      "durationMs": 25000,
+      "intent": "Show structured tool calls and execution boundary",
+      "script": "Under the hood, the model proposes a tool call with structured arguments. Your code decides whether to run it. The tool returns data, not magic. That result goes back into the conversation, where the model can choose another step. This loop stops on a final answer, a limit, or a human approval gate."
+    },
+    {
+      "id": "demo",
+      "startMs": 55000,
+      "durationMs": 20000,
+      "intent": "Demonstrate a useful disclosed simulation",
+      "script": "Suppose the goal is to compare tomorrow's weather with your calendar and suggest a commute. The agent reads two approved sources, notices an afternoon meeting, and suggests leaving early with an umbrella. That's a useful workflow, but the displayed run is a simulation."
+    },
+    {
+      "id": "limits",
+      "startMs": 75000,
+      "durationMs": 15000,
+      "intent": "Show failure modes and human oversight",
+      "script": "Agents can still hallucinate, call the wrong tool, or confidently act on stale data. Give them narrow permissions, timeouts, and a human checkpoint before anything costly or irreversible."
+    },
+    {
+      "id": "conclusion",
+      "startMs": 90000,
+      "durationMs": 10000,
+      "intent": "Land the mental model and brand",
+      "script": "The trick is not making AI sound autonomous. It's giving it a goal, useful tools, and a way to know when to stop. ToolPilot: smarter tools, better work."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "chatbot-checklist",
+      "beatId": "hook",
+      "startMs": 0,
+      "durationMs": 4000,
+      "type": "ComicChat",
+      "visualPurpose": "A chatbot explains instead of doing",
+      "assetIds": [
+        "original-comic"
+      ],
+      "status": "implemented"
+    },
+    {
+      "id": "agent-escapes",
+      "beatId": "hook",
+      "startMs": 4000,
+      "durationMs": 6000,
+      "type": "AgentEscape",
+      "visualPurpose": "Agent moves from words to action",
+      "assetIds": [
+        "original-comic"
+      ],
+      "status": "implemented"
+    },
+    {
+      "id": "agent-loop",
+      "beatId": "explanation",
+      "startMs": 10000,
+      "durationMs": 7000,
+      "type": "ActionLoop",
+      "visualPurpose": "Goal, action, tool, observation, repeat",
+      "assetIds": [
+        "original-diagram"
+      ],
+      "status": "implemented"
+    },
+    {
+      "id": "recipe-kitchen",
+      "beatId": "explanation",
+      "startMs": 17000,
+      "durationMs": 5000,
+      "type": "KitchenAnalogy",
+      "visualPurpose": "Recipe versus doing the task",
+      "assetIds": [
+        "original-kitchen"
+      ],
+      "status": "implemented"
+    },
+    {
+      "id": "missing-eggs",
+      "beatId": "explanation",
+      "startMs": 22000,
+      "durationMs": 8000,
+      "type": "MissingEggs",
+      "visualPurpose": "Observation changes the plan",
+      "assetIds": [
+        "original-kitchen"
+      ],
+      "status": "implemented"
+    },
+    {
+      "id": "tool-call",
+      "beatId": "technical",
+      "startMs": 30000,
+      "durationMs": 13000,
+      "type": "CodeTerminal",
+      "visualPurpose": "Structured tool call crosses an execution boundary",
+      "assetIds": [
+        "illustrative-code",
+        "planned-real-code-recording"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "tool-result",
+      "beatId": "technical",
+      "startMs": 43000,
+      "durationMs": 12000,
+      "type": "DiagramFlow",
+      "visualPurpose": "Tool result reenters the decision loop",
+      "assetIds": [
+        "original-diagram"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "commute-demo",
+      "beatId": "demo",
+      "startMs": 55000,
+      "durationMs": 20000,
+      "type": "ScreenDemo",
+      "visualPurpose": "Disclosed simulated workflow completes a task",
+      "assetIds": [
+        "simulated-demo"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "failure-modes",
+      "beatId": "limits",
+      "startMs": 75000,
+      "durationMs": 15000,
+      "type": "ComicFailure",
+      "visualPurpose": "Wrong tool and stale data require oversight",
+      "assetIds": [
+        "original-comic",
+        "planned-oversight-photo"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "takeaway",
+      "beatId": "conclusion",
+      "startMs": 90000,
+      "durationMs": 10000,
+      "type": "BrandOutro",
+      "visualPurpose": "Goal plus tools plus stop rule",
+      "assetIds": [
+        "toolpilot-brand"
+      ],
+      "status": "planned"
+    }
+  ],
+  "assets": [
+    {
+      "id": "original-comic",
+      "kind": "code-native-vector",
+      "source": "remotion/agents/EditorialScenes.tsx",
+      "creator": "Veyora Media Engine",
+      "license": "project-owned original",
+      "usage": "0-30s"
+    },
+    {
+      "id": "original-kitchen",
+      "kind": "code-native-vector",
+      "source": "remotion/agents/EditorialScenes.tsx",
+      "creator": "Veyora Media Engine",
+      "license": "project-owned original",
+      "usage": "0-30s"
+    },
+    {
+      "id": "original-diagram",
+      "kind": "code-native-vector",
+      "source": "remotion/agents/EditorialScenes.tsx",
+      "creator": "Veyora Media Engine",
+      "license": "project-owned original",
+      "usage": "0-30s"
+    },
+    {
+      "id": "illustrative-code",
+      "kind": "planned",
+      "source": "original illustrative TypeScript",
+      "creator": "Veyora Media Engine",
+      "license": "project-owned original",
+      "usage": "30-55s"
+    },
+    {
+      "id": "simulated-demo",
+      "kind": "planned",
+      "source": "original disclosed simulation",
+      "creator": "Veyora Media Engine",
+      "license": "project-owned original",
+      "usage": "55-75s"
+    },
+    {
+      "id": "toolpilot-brand",
+      "kind": "existing-brand",
+      "source": "remotion/components/BrandMark.tsx",
+      "creator": "ToolPilot",
+      "license": "project brand; ownership to confirm",
+      "usage": "90-100s"
+    },
+    {
+      "id": "planned-real-code-recording",
+      "kind": "planned-real-screen-recording",
+      "source": "To record from the local illustrative tool-call project after 30s approval",
+      "creator": "Veyora Media Engine",
+      "license": "pending self-produced capture and review",
+      "usage": "30-55s"
+    },
+    {
+      "id": "planned-oversight-photo",
+      "kind": "planned-original-photo",
+      "source": "To photograph a hand at a confirmation key after 30s approval",
+      "creator": "Veyora Media Engine",
+      "license": "pending self-produced capture and review",
+      "usage": "75-90s"
+    }
+  ]
+}

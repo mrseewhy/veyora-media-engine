@@ -1,0 +1,13 @@
+import {existsSync} from 'node:fs';
+import {readFile,mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {generateGeminiVoice} from './gemini-voice.js';
+import {ffmpegPath,run} from './media-tools.js';
+import {validateEditorialStoryboard} from '../../shared/src/editorial-storyboard.js';
+if(existsSync('.env')) process.loadEnvFile('.env');
+const storyboard=validateEditorialStoryboard(JSON.parse(await readFile('fixtures/storyboards/toolpilot-agents-100s.json','utf8')));
+await mkdir('data/agents100',{recursive:true});
+await mkdir('public/generated',{recursive:true});
+await generateGeminiVoice(storyboard.narration.previewText,resolve('data/agents100/narration-raw.wav'),storyboard.narration.voice,[{text:storyboard.narration.previewText,style:'Conversational, witty technology educator. Brisk but articulate. Smile slightly at beautiful checklist and no eggs. Natural pauses at the end of each thought. Clear contrast between chatbot and agent; no theatrical announcer voice.'}]);
+await run(ffmpegPath,['-hide_banner','-loglevel','error','-y','-i',resolve('data/agents100/narration-raw.wav'),'-ar','48000','-ac','1',resolve('public',storyboard.narration.previewAudioPath)]);
+console.log(resolve('public',storyboard.narration.previewAudioPath));
