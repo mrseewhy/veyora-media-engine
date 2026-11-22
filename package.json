@@ -19,6 +19,8 @@
     "typecheck:remotion": "tsc -p remotion/tsconfig.json",
     "agents:render": "npm run build && node dist/packages/renderer/src/render-agents-preview.js",
     "agents:render:15s": "npm run build && node dist/packages/renderer/src/render-agents-15s.js",
+    "toolpilot:intro:render": "npm run build && node dist/packages/renderer/src/render-toolpilot-intro.js",
+    "toolpilot:outro:render": "npm run build && node dist/packages/renderer/src/render-toolpilot-outro.js",
     "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
