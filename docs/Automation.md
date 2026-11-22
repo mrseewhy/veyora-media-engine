@@ -8,7 +8,7 @@
 5. Storyboard: structured scenes with assets, transitions and captions.
 6. Asset acquisition: original graphics or permissioned screenshots, license manifest.
 7. Narration: local TTS, timed segments and pronunciation checks.
-8. Render: FFmpeg timeline, overlays, audio mix and export.
+8. Render: Remotion visual timeline; FFmpeg audio processing, muxing and export.
 9. QA: ffprobe + missing asset checks + full human viewing.
 10. Approval: explicit operator signoff.
 11. Upload: YouTube API (later); private/unlisted test first.
@@ -21,7 +21,7 @@ Every step stores its inputs, outputs, version and errors. Rerun failed steps wi
 AI may propose claims and scenes, not assert unverified facts as checked. Never generate fake product screenshots and present them as real. Never scrape private accounts or bypass platform terms.
 
 ## Cost and operational controls
-Keep first renderer fully local. Record AI token/API costs when AI integration is added. Limit concurrent renders and disk usage. Secrets only in environment variables.
+Keep rendering local. Gemini narration regeneration requires an API key and may incur usage costs; an existing local take can be reused for rendering. Record provider costs, limit concurrent renders and disk usage, and keep secrets only in environment variables.
 
 ## Observability
 Job ID, episode ID, step, duration, output location, warnings, retry count and approval actor/time.

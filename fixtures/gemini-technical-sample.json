@@ -1,0 +1,18 @@
+{
+  "title": "ToolPilot technical voice test",
+  "voice": "Puck",
+  "turns": [
+    {
+      "style": "Bright, curious, and punchy. Start with an engaging hook. Keep it conversational, with clear emphasis on latency and API.",
+      "text": "A slick AI demo can hide terrible LATENCY. Measure the API call, not just the animation."
+    },
+    {
+      "style": "Move briskly through the technical walkthrough, with lively variation and precise emphasis on time to first token, JSON, context window, and embeddings. Sound conversational rather than scripted.",
+      "text": "Check time to first token, total response time, and token budget. Inspect the JSON. Retry failed tool calls safely. If the context window fills up, summarize. Retrieval augmented generation helps, but vector embeddings are only as good as their source documents."
+    },
+    {
+      "style": "Slow slightly for the takeaway, then end with upbeat conviction and a hint of personality.",
+      "text": "The real test? Can someone finish the task quickly and correctly? Watch your rate limits, and turn that prototype into a product."
+    }
+  ]
+}

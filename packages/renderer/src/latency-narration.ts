@@ -1,0 +1,11 @@
+import {existsSync} from 'node:fs';
+if(existsSync('.env'))process.loadEnvFile('.env');
+import {mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {generateGeminiVoice} from './gemini-voice.js';
+const text='A slick AI demo can hide terrible latency. Measure the API call, not just the animation.';
+const style='Confident, punchy, conversational technology educator. A subtle knowing edge on slick AI demo; emphasize terrible latency. Pick up the pace on Measure the API call, and land not just the animation with a clear contrast. Natural inflection, no theatrical announcer voice.';
+const output=resolve('data/renderer10/narration-raw.wav');
+await mkdir(resolve('data/renderer10'),{recursive:true});
+await generateGeminiVoice(text,output,'Puck',[{text,style}]);
+console.log(output);

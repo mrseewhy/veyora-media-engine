@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "latency-local-01",
+  "kind": "latency-measurement",
+  "endpoint": "http://127.0.0.1:4317/v1/chat/completions",
+  "method": "POST",
+  "measuredAt": "2026-11-22T02:49:48.609Z",
+  "runs": 5,
+  "ttftMs": 858,
+  "totalMs": 2506,
+  "simulated": false,
+  "uiSimulated": true,
+  "disclosure": "Timing is a real measurement of a local demo API on this machine. The assistant interface and response text are simulated.",
+  "methodology": "Five sequential POST requests to a local Node HTTP streaming endpoint. The endpoint waits 850 ms before the first token, then emits 18 tokens at 90 ms intervals. The client measures time to first byte and total stream duration with performance.now(). The median run is shown; the representative run is retained below.",
+  "environment": {
+    "node": "v22.14.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "representativeRun": 5,
+  "samples": [
+    {
+      "run": 1,
+      "ttftMs": 912,
+      "totalMs": 2553,
+      "chunks": 19
+    },
+    {
+      "run": 2,
+      "ttftMs": 859,
+      "totalMs": 2509,
+      "chunks": 19
+    },
+    {
+      "run": 3,
+      "ttftMs": 858,
+      "totalMs": 2505,
+      "chunks": 19
+    },
+    {
+      "run": 4,
+      "ttftMs": 855,
+      "totalMs": 2504,
+      "chunks": 19
+    },
+    {
+      "run": 5,
+      "ttftMs": 858,
+      "totalMs": 2506,
+      "chunks": 19
+    }
+  ]
+}

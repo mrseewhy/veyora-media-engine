@@ -5,8 +5,8 @@ Local-first, repeatable production engine for ToolPilot's **AI Tools in 100 Seco
 
 ## Architecture
 - **Runtime:** Node.js + TypeScript monorepo (pnpm workspaces).
-- **Renderer:** FFmpeg baseline, with programmatic scenes and overlays; evaluate Remotion only after verifying license for our intended automated commercial use.
-- **Narration:** Piper local TTS, verify voice-model license. Replaceable speech adapter.
+- **Renderer:** Remotion 4 for visual composition; FFmpeg/ffprobe for media processing and QA. See [Remotion renderer](RemotionRenderer.md) and [Licensing](Licensing.md).
+- **Narration:** Gemini Flash TTS for the 10-second proof, with a replaceable voice adapter and Kokoro local baseline.
 - **Media:** local files under ignored data directory; manifest tracks source and license.
 - **App:** Next.js dashboard after CLI pipeline is proven.
 - **DB:** local PostgreSQL + Drizzle, added with job management; database is not a prerequisite for renderer proof.
@@ -15,7 +15,7 @@ Local-first, repeatable production engine for ToolPilot's **AI Tools in 100 Seco
 - **Publishing:** YouTube Data API only after explicit approval; credentials via environment variables, never committed.
 
 ## Sequence and exit gates
-1. **Renderer proof:** a human-approved 100-second script + licensed assets -> playable 1920x1080 MP4, synchronized voice/captions, valid duration and no missing frames.
+1. **Renderer proof:** render and obtain human approval of the 10-second latency scene before expanding to 30 or 100 seconds. The current render passes machine QA; visual, factual and brand approval is pending.
 2. **One-command pipeline:** typed episode JSON -> narration, scene assets, captions, render, metadata, validation report. Rerunnable with stable output IDs.
 3. **AI-assisted preparation:** source-backed topic discovery, claim verification queue, script and scene planning; no unsourced claims automatically approved.
 4. **Dashboard and persistence:** PostgreSQL, Drizzle migrations, projects, episodes, assets, jobs, review states, preview/rerender; background worker with retries.
@@ -26,8 +26,8 @@ Local-first, repeatable production engine for ToolPilot's **AI Tools in 100 Seco
 Each phase must demonstrate its exit gate on a real output and pass tests. Reliability means observable success rates, not a promise of 100% autonomous factual or creative quality.
 
 ## Risks / decisions to validate
-- FFmpeg animation quality vs Remotion licensing/complexity.
-- Piper voice quality and specific voice-model licenses.
+- Remotion licence eligibility for the producing organisation and visual quality at full playback.
+- Gemini voice usage terms and provider cost; Kokoro fallback quality.
 - Screenshot capture permission, attribution, trademark/copyright.
 - Source quality and changing product interfaces.
 - YouTube API restrictions, monetization/originality policies.

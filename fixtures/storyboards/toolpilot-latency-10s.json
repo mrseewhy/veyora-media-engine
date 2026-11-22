@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "episodeId": "toolpilot-latency-10s",
+  "storyboardVersion": 1,
+  "journeyTemplate": "concept-explainer",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "durationMs": 10000
+  },
+  "brand": {
+    "name": "ToolPilot",
+    "tagline": "Smarter Tools. Better Work.",
+    "accent": "#B6F84A"
+  },
+  "narration": {
+    "assetId": "voice-latency-puck-01",
+    "text": "A slick AI demo can hide terrible latency. Measure the API call, not just the animation.",
+    "audioPath": "generated/latency-narration.wav",
+    "sourcePath": "data/renderer10/narration-raw.wav",
+    "provider": "gemini-flash-tts",
+    "voice": "Puck",
+    "durationMs": 6104,
+    "startMs": 300,
+    "measured": true,
+    "captions": [
+      {
+        "id": "c1",
+        "text": "A slick AI demo can hide terrible latency.",
+        "startMs": 260,
+        "endMs": 3610,
+        "emphasis": [
+          "terrible latency"
+        ]
+      },
+      {
+        "id": "c2",
+        "text": "Measure the API call, not just the animation.",
+        "startMs": 3730,
+        "endMs": 6370,
+        "emphasis": [
+          "API call"
+        ]
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "latency-local-01",
+      "kind": "latency-measurement",
+      "endpoint": "http://127.0.0.1:4317/v1/chat/completions",
+      "method": "POST",
+      "measuredAt": "2026-11-22T02:49:48.609Z",
+      "runs": 5,
+      "ttftMs": 858,
+      "totalMs": 2506,
+      "simulated": false,
+      "uiSimulated": true,
+      "disclosure": "Timing is a real measurement of a local demo API on this machine. The assistant interface and response text are simulated.",
+      "methodology": "Five sequential POST requests to a local Node HTTP streaming endpoint. The endpoint waits 850 ms before the first token, then emits 18 tokens at 90 ms intervals. The client measures time to first byte and total stream duration with performance.now(). The median run is shown.",
+      "environment": {
+        "node": "v22.14.0",
+        "platform": "darwin",
+        "arch": "arm64"
+      }
+    }
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "intent": "Make the viewer feel how a polished assistant UI can conceal the request that is actually doing the work.",
+      "startMs": 0,
+      "durationMs": 3720,
+      "narration": {
+        "startMs": 260,
+        "endMs": 3610,
+        "captionIds": [
+          "c1"
+        ]
+      }
+    },
+    {
+      "id": "proof",
+      "intent": "Move from perceived speed to a measured request timeline and expose the gap.",
+      "startMs": 3720,
+      "durationMs": 4480,
+      "narration": {
+        "startMs": 3730,
+        "endMs": 6370,
+        "captionIds": [
+          "c2"
+        ]
+      }
+    },
+    {
+      "id": "verdict",
+      "intent": "Freeze on the measured call duration and land one instruction the viewer can reuse.",
+      "startMs": 8200,
+      "durationMs": 1800,
+      "narration": null
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1-instant",
+      "type": "ScreenDemo",
+      "beatId": "hook",
+      "startMs": 0,
+      "durationMs": 3720,
+      "visual": {
+        "variant": "assistant-with-network",
+        "title": "ToolPilot Assistant",
+        "url": "demo.toolpilot.dev/assistant",
+        "userPrompt": "Explain API latency.",
+        "assistantText": "Here's your answer, rendered smoothly.",
+        "uiReadyMs": 180,
+        "revealNetworkAtMs": 1500,
+        "measurementId": "latency-local-01",
+        "disclosure": "Simulated UI. The request timing is measured on this machine."
+      },
+      "motion": {
+        "preset": "reveal-then-focus",
+        "intensity": "medium"
+      },
+      "caption": {
+        "mode": "emphasis",
+        "safeArea": true,
+        "cueIds": [
+          "c1"
+        ]
+      },
+      "review": "proposed"
+    },
+    {
+      "id": "s2-trace",
+      "type": "MetricTimeline",
+      "beatId": "proof",
+      "startMs": 3720,
+      "durationMs": 4480,
+      "visual": {
+        "measurementId": "latency-local-01",
+        "unit": "ms",
+        "uiPerceivedMs": 180,
+        "disclosure": "Local demo API · measured on this machine · assistant UI simulated",
+        "labels": {
+          "request": "REQUEST SENT",
+          "firstToken": "FIRST TOKEN",
+          "complete": "FULL RESPONSE",
+          "ui": "UI ANIMATION",
+          "api": "API CALL",
+          "gap": "HIDDEN LATENCY"
+        }
+      },
+      "motion": {
+        "preset": "focus-network",
+        "intensity": "medium"
+      },
+      "caption": {
+        "mode": "emphasis",
+        "safeArea": true,
+        "cueIds": [
+          "c2"
+        ]
+      },
+      "review": "proposed"
+    },
+    {
+      "id": "s3-verdict",
+      "type": "Callout",
+      "beatId": "verdict",
+      "startMs": 8200,
+      "durationMs": 1800,
+      "visual": {
+        "headline": "MEASURE THE API CALL",
+        "subheadline": "not just the animation.",
+        "measurementId": "latency-local-01",
+        "detail": "TOTAL RESPONSE · LOCAL DEMO API",
+        "disclosure": "Simulated UI · measured local API timing · 22 Nov 2026",
+        "tone": "lime"
+      },
+      "motion": {
+        "preset": "freeze-slam",
+        "intensity": "strong"
+      },
+      "caption": {
+        "mode": "none",
+        "safeArea": true,
+        "cueIds": []
+      },
+      "review": "proposed"
+    }
+  ],
+  "review": {
+    "status": "proposed",
+    "notes": [
+      "Machine QA pending.",
+      "Human visual, factual and brand approval pending."
+    ]
+  }
+}
