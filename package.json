@@ -18,6 +18,7 @@
     "scene:studio": "remotion studio remotion/index.ts",
     "typecheck:remotion": "tsc -p remotion/tsconfig.json",
     "agents:render": "npm run build && node dist/packages/renderer/src/render-agents-preview.js",
+    "agents:render:15s": "npm run build && node dist/packages/renderer/src/render-agents-15s.js",
     "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
