@@ -1,6 +1,6 @@
 import React from 'react';
 import {msToFrame, type CaptionCue} from '../../packages/shared/src/storyboard';
-import {theme} from '../theme';
+import {theme, videoLayout} from '../theme';
 import {clamp01, highlightParts, progress} from '../lib/animation';
 
 interface CaptionTrackProps {
@@ -28,10 +28,10 @@ export const CaptionTrack: React.FC<CaptionTrackProps> = ({captions, frame, fps}
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: 52,
+        bottom: videoLayout.safeArea.bottom,
         display: 'flex',
         justifyContent: 'center',
-        padding: '0 120px',
+        padding: `0 ${videoLayout.safeArea.left}px`,
         zIndex: 30,
         pointerEvents: 'none',
       }}
@@ -41,7 +41,7 @@ export const CaptionTrack: React.FC<CaptionTrackProps> = ({captions, frame, fps}
           display: 'flex',
           alignItems: 'center',
           gap: 18,
-          maxWidth: 1560,
+          maxWidth: videoLayout.width - videoLayout.safeArea.left - videoLayout.safeArea.right,
           padding: '17px 28px 17px 22px',
           borderRadius: 14,
           background: 'rgba(4, 9, 14, 0.9)',
