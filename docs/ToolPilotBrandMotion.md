@@ -55,3 +55,29 @@ These are production and rendering rules, **not dashboard/interface requirements
 3. Review for motion quality, clarity, voice, caption overlap and composition; **obtain operator approval before** producing another full episode.
 4. Then render the full episode in all three native formats, inspect frames/contact sheets, and run audio/caption/technical QA.
 5. Report separately: documented, coded, rendered, machine-QA checked, and human-approved. Never mark unrun renders as passed.
+
+
+## Canonical best-so-far reference: AI Agents 30-second preview (operator selection, 2026-11-22)
+
+**Reference media:** [`agents-0-30.mp4`](../agents-0-30.mp4) on `main`. This is the **best result produced so far**, *not* a fully approved or perfect final-video template. Preserve the successful qualities while correcting its layout and readability shortcomings. Do not substitute the rejected Claude Code video as a visual or audio baseline.
+
+**What to preserve**
+- The **audio is the strongest part**: preserve its recognizable voice and fast, articulate delivery. Use the earlier AI Agents voice configuration documented in `docs/ToolPilotVoice.md`; do not assume another TTS result is equivalent without A/B comparison.
+- Its existing **illustrated, lively in-scene animation direction**, rather than replacing it with static dark text cards. Reuse/refine existing React/SVG scene components where practical.
+- Its general narrative energy, synchronized movement, and recognizable content-first style, without treating individual compositions as visually flawless.
+
+**Corrections required before reusing as a standard**
+1. **More side space:** increase left/right internal safe margins for important text, artwork, UI and code. Keep content balanced and free from edge crowding. Allow full-bleed backgrounds, but not full-bleed essential content.
+2. **More room at the bottom:** reserve a caption-safe lane **outside the essential animation canvas** and move all primary scene content higher, including illustrated characters, text and UI. Caption overlays must not collide with content.
+3. **Accurate positioning:** establish consistent alignment, bounding areas and per-scene composition; keep visual hierarchy correct rather than simply uniformly shrinking/scaling every scene.
+4. **Native responsive formats:** the existing `remotion/agents/AgentsPreview.tsx` fits a fixed 1920×1080 canvas into other aspect ratios with `scale=Math.min(width/1920,height/1080)`, which is not a finished responsive layout. Recompose contents for 16:9, 1:1 and 9:16 using native safe areas; do not use letterboxing as the final solution.
+5. **Caption implementation:** `remotion/components/CaptionTrack.tsx` currently floats captions above `videoLayout.safeArea.bottom`. Coordinate its reserved lane with `EditorialScenes.tsx` scene bounds rather than merely raising/lowering the subtitle overlay.
+6. **Do not regress:** retain approved narration pace and the good animated editorial storytelling. This work is a **targeted refinement** of the existing preview, not permission for a wholesale visual redesign.
+
+**Acceptance process**
+- Use `agents-0-30.mp4` and its original source (`remotion/agents/EditorialScenes.tsx`, `remotion/agents/AgentsPreview.tsx`, caption and layout components) as the baseline.
+- Render a **15-second comparison excerpt** with improved left/right breathing room, bottom caption lane, collision-free positioning and animation, using the **same reference narration where verifiably available**.
+- Review side-by-side against the original. Reject if improved margins come at the cost of tiny unreadable visuals, reduced energy, or voice changes.
+- After explicit acceptance, update versioned reusable layout primitives and expand to the full 100–120-second content episode. Keep the dashboard/interface outside scope.
+
+**Verification distinction:** the source code and reference-file path were inspected, but the binary MP4 itself was not decoded through the GitHub connector; this assessment relies on the operator's stated audio/visual preference and the inspected composition source. The reference video should be visually and audibly compared during local rendering/QA.
