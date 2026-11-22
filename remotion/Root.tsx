@@ -38,6 +38,21 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{storyboard}}
         calculateMetadata={calculateMetadata}
       />
+      {([
+        ['ToolPilotAgents30sVertical', 1080, 1920],
+        ['ToolPilotAgents30sSquare', 1080, 1080],
+      ] as const).map(([id, width, height]) => (
+        <Composition
+          key={id}
+          id={id}
+          component={AgentsPreview}
+          defaultProps={{storyboard: validateEditorialStoryboard(agentsJson)}}
+          width={width}
+          height={height}
+          fps={30}
+          durationInFrames={900}
+        />
+      ))}
       <Composition
         id="ToolPilotAgents30s"
         component={AgentsPreview}
