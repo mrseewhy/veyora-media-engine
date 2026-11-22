@@ -1,6 +1,12 @@
 # Veyora Media Engine
 
-Local-first video production engine for **ToolPilot** (Veyora House), starting with the **AI Tools in 100 Seconds** series.
+Local-first, multi-channel production platform for **Veyora House's 13 planned media channels**. **ToolPilot** is the first pilot, beginning with the **AI Tools in 100 Seconds** series.
+
+## Agent and multi-channel architecture
+- [Permanent instructions for coding agents](AGENTS.md)
+- [Multi-channel architecture and migration plan](docs/MultiChannelArchitecture.md)
+- ToolPilot-specific code remains in the current structure while the shared engine is extracted incrementally. Other channel configurations have not yet been implemented.
+- `agents:render:all` currently generates three **30-second previews** with fitted landscape layouts, not full native-responsive 100-second exports.
 
 ## Status
 **The 10-second latency proof remains a regression composition.** A separate 30-second opening preview of **AI Agents in 100 Seconds** is rendered for review. The complete 100-second script and storyboard are drafted; the remaining 70 seconds have not been implemented or rendered.
