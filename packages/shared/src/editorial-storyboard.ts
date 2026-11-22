@@ -7,9 +7,15 @@ const VIDEO_HEIGHT = 1080;
 const VIDEO_FPS = 30;
 
 export type EditorialSceneType =
-  | 'ComicChat' | 'AgentEscape' | 'KitchenAnalogy' | 'ActionLoop'
-  | 'MissingEggs' | 'CodeTerminal' | 'DiagramFlow' | 'ScreenDemo'
-  | 'ComicFailure' | 'BrandOutro';
+  | 'BrandIntro'
+  | 'TerminalHook'
+  | 'AgentInLoop'
+  | 'ToolUse'
+  | 'SubagentsMCP'
+  | 'WorkflowDemo'
+  | 'Guardrails'
+  | 'ConclusionBrand'
+  | 'BrandOutro';
 
 export interface EditorialScene {
   id: string;
@@ -47,8 +53,8 @@ export interface EditorialStoryboard {
 }
 
 const types = new Set<EditorialSceneType>([
-  'ComicChat', 'AgentEscape', 'KitchenAnalogy', 'ActionLoop', 'MissingEggs',
-  'CodeTerminal', 'DiagramFlow', 'ScreenDemo', 'ComicFailure', 'BrandOutro',
+  'BrandIntro', 'TerminalHook', 'AgentInLoop', 'ToolUse', 'SubagentsMCP',
+  'WorkflowDemo', 'Guardrails', 'ConclusionBrand', 'BrandOutro',
 ]);
 const normalized = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 

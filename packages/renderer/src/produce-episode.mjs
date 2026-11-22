@@ -34,7 +34,7 @@ try{
       const p=await probe(aiff),actual=Number(p.format.duration),target=beat.durationMs/1000-.18;
       const tempo=actual/target;
       if(!Number.isFinite(tempo)||tempo<.5||tempo>2)throw Error(`Local speech unavailable or beat ${beat.id} needs unreasonable stretch`);
-      await run(ffmpeg,['-y','-loglevel','error','-i',aiff,'-af',`atempo=${tempo.toFixed(5)},apad=pad_dur=.18,atrim=duration=${(beat.durationMs/1000).toFixed(3)},aresample=48000`,'-ac','1',wav]);
+      await run(ffmpeg,['-y','-loglevel','error','-i',aiff,'-af',`atempo=${tempo.toFixed(5)},apad=pad_dur=0.18,atrim=duration=${(beat.durationMs/1000).toFixed(3)},aresample=48000`,'-ac','1',wav]);
       parts.push(wav);await rm(aiff,{force:true});
     }}catch(error){
       record('narration','fallback',String(error));
