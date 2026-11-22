@@ -45,3 +45,17 @@
 - [ ] Vertical templates and multiple channel profiles.
 - [ ] Scheduling, analytics and production health metrics.
 - [ ] Review monetization/originality compliance.
+
+## Immediate quality reset (takes priority over the original Phase 1 order)
+- [ ] Audit the current implementation and reconcile the earlier FFmpeg/Piper plan with actual code; preserve working assets.
+- [ ] Verify Remotion licensing for automated commercial production; choose renderer accordingly.
+- [ ] Adopt the viewer journey templates in [VideoExperience](VideoExperience.md).
+- [ ] Implement typed storyboard/scene contract in [StoryboardSystem](StoryboardSystem.md).
+- [ ] Define real or explicitly simulated evidence assets for the 10-second latency hook.
+- [ ] Implement ScreenDemo, MetricTimeline and Callout scenes with meaningful motion.
+- [ ] Use the selected Gemini Flash TTS take with measured audio/caption timing; retain provider fallback.
+- [ ] Render a **10-second scene only**, run machine QA and review on desktop/mobile.
+- [ ] Record visual defects and iterate until explicitly approved; **do not expand duration or build the full UI before approval**.
+- [ ] After approval, implement the storyboard editor journey in [UserJourney](UserJourney.md), reusing the same data contract.
+
+**Note:** Earlier tasks mentioning Piper/FFmpeg as the sole renderer describe the original baseline, not the revised quality target. Do not mark any task complete without verifying code and output.
