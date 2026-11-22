@@ -1,3 +1,12 @@
+export const videoLayout = {
+  width: 1920,
+  height: 1080,
+  safeArea: {left: 150, right: 150, top: 100, bottom: 100},
+  // Preserve the 1920x1080 editorial scene coordinate system while keeping
+  // animated foreground content inside the documented safe area.
+  contentScale: Math.min((1920 - 300) / 1920, (1080 - 200) / 1080),
+} as const;
+
 export const theme = {
   colors: {
     bg: '#070D14',
