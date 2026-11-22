@@ -25,3 +25,33 @@
 
 ## Status
 These revised timings and audio rules supersede earlier 2–3 second intro, 3–4 second outro, and 100-second total rules. **Requirements are approved; the revised animations themselves are not yet implemented or visually approved.**
+
+
+## Fast-paced motion and caption-safe production standard (operator-approved, 2026-11-22)
+These are production and rendering rules, **not dashboard/interface requirements**. Apply them to ToolPilot's episode scene compositions, shared renderer primitives and per-format export QA only.
+
+### Motion direction
+- Produce **fast-paced, information-dense, original technical motion storytelling**, inspired by Fireship's energy without copying its original assets or recognizable creative elements.
+- The reviewed Claude Code episode was rejected as **too still and slideshow-like**. Do not use a slideshow of static panels, oversized title cards, or occasional transitions as a substitute for animation.
+- Aim for a meaningful visual event roughly every **2–4 seconds**, tied to narration rather than an arbitrary cut timer. Animate **inside** each scene: terminal commands typing/executing, code edits/diffs, editor focus, authentic product UI interactions, diagram changes, zoom/pan on evidence, and before/after states.
+- Avoid constant movement, spinning/zooming for its own sake, transitions obscuring code, or animation that competes with comprehension. Keep code/UI legible long enough to understand. Narration and visual demonstration must tell the **same** story.
+- Vary visual types: real demo/capture, terminal, code editor, annotated screenshot, original diagram, and brief kinetic typography. No repetitive generic dark cards.
+
+### Caption-safe composition
+- Reserve a **dedicated bottom caption lane** in every content scene. **Move the main animation/content higher** so captions do not overlap code, diagrams, controls, or other essential visual elements.
+- Create and test **format-specific layout and caption-safe guides** for **1920×1080 landscape, 1080×1080 square, and 1080×1920 portrait**. Recompose natively for each format, accounting for platform overlays; never just crop a landscape frame.
+- Captions should generally be **one or two lines**, synchronized to narration, with clear contrast and optional restrained word emphasis. Avoid giant captions, long unbroken text and subtitles over the visual evidence.
+- Caption space is reserved in the **content segment**; intro and outro follow their separate approved brand templates. Captions begin with narration at the content start, including the 5-second intro offset in final outputs.
+- Treat any overlap between captions and essential visuals as a **render QA failure**. Inspect representative frames and contact sheets in all three formats in addition to automated bounds tests.
+
+### Narration and timing
+- **Keep the current fast speaking speed**. Do not slow narration to compensate for weak visuals; improve synchronization and visual density instead.
+- Preserve the **approved earlier AI Agents Gemini Flash TTS / Puck voice identity** under `docs/ToolPilotVoice.md`. The rejected Claude Code voice is not approved. Pace preference does not authorize changing provider/voice.
+- Preserve existing locked structure: **5-second music-only intro**, **100–120 seconds narrated content**, **8-second music-only outro** (5 seconds animation followed by a completely static 3-second hold).
+
+### Acceptance gate for the next episode
+1. Implement or reuse actual Remotion scene motion primitives and responsive caption lanes; do not treat documentation alone as implementation.
+2. Render a **15-second representative content excerpt** featuring continuous in-scene animation, synchronized captions in the reserved lower lane, and the intended narration delivery.
+3. Review for motion quality, clarity, voice, caption overlap and composition; **obtain operator approval before** producing another full episode.
+4. Then render the full episode in all three native formats, inspect frames/contact sheets, and run audio/caption/technical QA.
+5. Report separately: documented, coded, rendered, machine-QA checked, and human-approved. Never mark unrun renders as passed.
