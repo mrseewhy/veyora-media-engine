@@ -121,3 +121,14 @@
 - Commands: `npm run latency:measure`, `npm run voice:latency`, `npm run latency:sync`, `npm run storyboard:validate`, `npm run scene:render`. Preview with `npm run scene:studio`.
 - Remaining gate: human visual, factual and brand review of the exact artifact on desktop and mobile. The storyboard review state is still `proposed`; no 30- or 100-second expansion is approved.
 - Reproducibility caveat: `data/` and `public/generated/` are ignored. The raw Gemini take and final MP4 must be regenerated (API key/quota required) or restored from the recorded artifact hashes.
+
+## Multi-platform rendering for ToolPilot episodes (approved 2026-11-22)
+- [ ] Register landscape (1920×1080), vertical (1080×1920) and square (1080×1080) Remotion compositions using one shared episode timeline.
+- [ ] Refactor existing scenes to respond to aspect ratio, repositioning captions, artwork and typography without stretching or cropping essential content.
+- [ ] Define and test per-platform safe areas and ensure important visuals/captions stay visible.
+- [ ] Add a single render command to export three H.264/AAC MP4s with shared narration, scenes and timing.
+- [ ] Produce separate contact sheets and QA results for each format; verify resolution, duration, audio, captions and missing assets.
+- [ ] Visually review all three formats on target devices and correct defects before publishing.
+- [ ] Preserve existing artwork and 10-second regression composition; do not add paid dependencies without approval.
+
+**Done when:** the complete 100-second AI Agents episode renders and passes QA and human review in all three aspect ratios. No publishing automation is implied.
