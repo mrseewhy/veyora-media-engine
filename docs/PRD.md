@@ -38,3 +38,11 @@ Fully autonomous publication, guaranteed virality, unrestricted generative foota
 
 ## Acceptance for first milestone
 One reproducible, visually acceptable ~100-second ToolPilot MP4, valid audio/captions and a QA report. Human reviews visual polish and factual accuracy.
+
+## Multi-platform episode rendering (approved requirement, 2026-11-22)
+One episode must render from shared narration, storyboard, scene definitions and timing into three platform-ready H.264/AAC MP4s:
+- Landscape 16:9, 1920×1080, 30 fps (YouTube)
+- Vertical 9:16, 1080×1920, 30 fps (YouTube Shorts, TikTok, Instagram/Facebook Reels)
+- Square 1:1, 1080×1080, 30 fps (Instagram, Facebook, LinkedIn)
+
+Implement responsive Remotion compositions, not resized or center-cropped landscape exports. Adapt layouts, captions, illustrations and typography per aspect ratio, respecting safe areas. Keep scene content and timing aligned across outputs. Generate an individual contact sheet and machine QA report for each output, then require human visual review of each. Preserve the existing 10-second regression composition and approved artwork. Reuse existing local tools; no new paid services without approval. Store generated assets in ignored local output directories and document render commands. This is a requirement, not a claim that implementation is complete.
