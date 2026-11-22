@@ -37,3 +37,10 @@ Remotion is an optional future renderer subject to licensing review, not a depen
 Implement the renderer CLI and a source-backed, manually approved ToolPilot episode fixture. Validate the MP4 with ffprobe and watch it in full. No dashboard or database work until this succeeds.
 
 No paid third-party account is required for the initial local renderer proof; future model/API and licensing costs must be checked before use.
+
+## Experience and production specifications
+- [Production user journey](docs/UserJourney.md)
+- [Viewer experience and video templates](docs/VideoExperience.md)
+- [Storyboard and scene system](docs/StoryboardSystem.md)
+
+**Quality-first next milestone:** audit the actual renderer, build one evidence-based 10-second latency scene with real or labeled simulated visuals, and obtain human visual approval before expanding to 30 or 100 seconds. Remotion is the proposed visual layer subject to license verification; Gemini Flash TTS is the preferred voice candidate, not a guaranteed free production dependency.
