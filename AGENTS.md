@@ -45,6 +45,9 @@ Generated outputs: `data/episodes/<channel-id>/<episode-id>/final/`, `captions/`
 - Machine checks are not human visual approval. Report any blocked or unverified item explicitly.
 - Current repository caveat: existing `agents:render:all` targets **30-second previews**, and alternate ratios currently fit a landscape canvas. Do not mistake this for the finished responsive 100-second pipeline. The editorial storyboard validator also enforces preview-only assumptions; generalize carefully with regression tests.
 
+## ToolPilot permanent brand-motion rules (approved)
+Read [`docs/ToolPilotBrandMotion.md`](docs/ToolPilotBrandMotion.md) before editing ToolPilot compositions or generating episodes. The **official** ToolPilot logo is `toolpilot-icon.png` at repository root; the legacy arrow `BrandMark` is not the approved logo. **@mytoolpilot** is the public handle. Implement and cache one reusable Remotion intro (2–3s, logo + ToolPilot text) and outro (3–4s, logo + Subscribe/Follow @mytoolpilot). Adapt CTA by platform and layouts by aspect ratio. No persistent in-video watermark, logo, or `TOOLPILOT / 100` overlay during content. The 100-second series budget **includes** intro and outro. No need for manually created montage files: generate the components in code, render once for human approval, then reuse the approved version. This is an approved design contract, **not** a claim that the animations already exist or passed review.
+
 ## Future AI media generation
 Pinokio is an application installer/launcher, **not a video model**. Wan2GP/WanGP is a local video-model execution interface; LTX-2 is a video-generation model family. Treat them as optional, benchmarked **asset providers**, never mandatory dependencies or replacements for Remotion's deterministic assembly. On an M1 16GB Mac, verify memory, speed, model/license and quality before selecting them. Do not assume usable performance or zero cost.
 
