@@ -19,6 +19,7 @@
     "typecheck:remotion": "tsc -p remotion/tsconfig.json",
     "agents:render": "npm run build && node dist/packages/renderer/src/render-agents-preview.js",
     "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js",
+    "episode:produce": "node packages/renderer/src/produce-episode.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "intelligence": "npm run build && node dist/packages/intelligence/src/cli.js",

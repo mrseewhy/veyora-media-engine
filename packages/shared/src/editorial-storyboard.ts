@@ -52,7 +52,7 @@ const types = new Set<EditorialSceneType>([
 ]);
 const normalized = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
-/** Strict preflight for a complete 100s plan and an implemented 0–30s preview. */
+/** Strict preflight for the 100-second editorial timeline and opening preview. */
 export function validateEditorialStoryboard(value: unknown): EditorialStoryboard {
   const s = value as EditorialStoryboard;
   const issues: string[] = [];
@@ -85,17 +85,17 @@ export function validateEditorialStoryboard(value: unknown): EditorialStoryboard
     if (scene.startMs < beat.startMs || scene.startMs + scene.durationMs > beat.startMs + beat.durationMs) issues.push(`scene ${scene.id}: outside beat`);
     if (scene.assetIds.some(id => !assetIds.has(id))) issues.push(`scene ${scene.id}: undeclared asset`);
     if (scene.startMs < 30000 && scene.status !== 'implemented') issues.push(`scene ${scene.id}: preview scene is not implemented`);
-    if (scene.startMs >= 30000 && scene.status !== 'planned') issues.push(`scene ${scene.id}: later scene must remain planned`);
+    if (scene.startMs >= 30000 && scene.status !== 'implemented' && scene.status !== 'planned') issues.push(`scene ${scene.id}: invalid status`);
   }
   for (const a of s.assets) if (!a.id || !a.source || !a.creator || !a.license || !a.usage) issues.push(`asset ${a.id}: missing provenance`);
   if (normalized(s.beats.slice(0, 2).map(b => b.script).join(' ')) !== normalized(s.narration.previewText)) issues.push('Preview narration differs from opening beats');
   let last = 0;
   for (const c of s.narration.captions) {
-    if (c.startMs < last || c.endMs <= c.startMs || c.endMs > 30000) issues.push(`caption ${c.id}: invalid timing`);
+    if (c.startMs < last || c.endMs <= c.startMs || c.endMs > 100000) issues.push(`caption ${c.id}: invalid timing`);
     if (c.emphasis?.some(e => !normalized(c.text).includes(normalized(e)))) issues.push(`caption ${c.id}: invalid emphasis`);
     last = c.endMs;
   }
-  if (normalized(s.narration.captions.map(c => c.text).join(' ')) !== normalized(s.narration.previewText)) issues.push('Captions do not cover narration');
+  if (normalized(s.narration.captions.filter(c => c.startMs < 30000).map(c => c.text).join(' ')) !== normalized(s.narration.previewText)) issues.push('Captions do not cover narration');
   if (issues.length) throw new Error(issues.join('\n'));
   return s;
 }

@@ -17,7 +17,7 @@
   "review": {
     "status": "proposed",
     "notes": [
-      "First 30 seconds ready for review; remaining scenes are editorial plans only."
+      "Full episode implemented; visual and timing review required before publication."
     ]
   },
   "narration": {
@@ -267,10 +267,9 @@
       "type": "CodeTerminal",
       "visualPurpose": "Structured tool call crosses an execution boundary",
       "assetIds": [
-        "illustrative-code",
-        "planned-real-code-recording"
+        "illustrative-code"
       ],
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "tool-result",
@@ -282,7 +281,7 @@
       "assetIds": [
         "original-diagram"
       ],
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "commute-demo",
@@ -294,7 +293,7 @@
       "assetIds": [
         "simulated-demo"
       ],
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "failure-modes",
@@ -304,10 +303,9 @@
       "type": "ComicFailure",
       "visualPurpose": "Wrong tool and stale data require oversight",
       "assetIds": [
-        "original-comic",
-        "planned-oversight-photo"
+        "original-comic"
       ],
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "takeaway",
@@ -319,7 +317,7 @@
       "assetIds": [
         "toolpilot-brand"
       ],
-      "status": "planned"
+      "status": "implemented"
     }
   ],
   "assets": [
@@ -349,16 +347,16 @@
     },
     {
       "id": "illustrative-code",
-      "kind": "planned",
-      "source": "original illustrative TypeScript",
+      "kind": "code-native-vector",
+      "source": "remotion/agents/FullEpisode.tsx",
       "creator": "Veyora Media Engine",
       "license": "project-owned original",
       "usage": "30-55s"
     },
     {
       "id": "simulated-demo",
-      "kind": "planned",
-      "source": "original disclosed simulation",
+      "kind": "code-native-vector",
+      "source": "remotion/agents/FullEpisode.tsx",
       "creator": "Veyora Media Engine",
       "license": "project-owned original",
       "usage": "55-75s"
@@ -370,22 +368,6 @@
       "creator": "ToolPilot",
       "license": "project brand; ownership to confirm",
       "usage": "90-100s"
-    },
-    {
-      "id": "planned-real-code-recording",
-      "kind": "planned-real-screen-recording",
-      "source": "To record from the local illustrative tool-call project after 30s approval",
-      "creator": "Veyora Media Engine",
-      "license": "pending self-produced capture and review",
-      "usage": "30-55s"
-    },
-    {
-      "id": "planned-oversight-photo",
-      "kind": "planned-original-photo",
-      "source": "To photograph a hand at a confirmation key after 30s approval",
-      "creator": "Veyora Media Engine",
-      "license": "pending self-produced capture and review",
-      "usage": "75-90s"
     }
   ]
 }

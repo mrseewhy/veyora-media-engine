@@ -12,6 +12,7 @@ import {
 import agentsJson from '../fixtures/storyboards/toolpilot-agents-100s.json';
 import {validateEditorialStoryboard} from '../packages/shared/src/editorial-storyboard';
 import {AgentsPreview} from './agents/AgentsPreview';
+import {FullEpisode} from './agents/FullEpisode';
 
 const storyboard: Storyboard = validateStoryboard(storyboardJson);
 
@@ -62,6 +63,7 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         durationInFrames={900}
       />
+      {([['ToolPilotAgents100s',1920,1080],['ToolPilotAgents100sVertical',1080,1920],['ToolPilotAgents100sSquare',1080,1080]] as const).map(([id,width,height])=><Composition key={id} id={id} component={FullEpisode} defaultProps={{storyboard:validateEditorialStoryboard(agentsJson)}} width={width} height={height} fps={30} durationInFrames={3000}/>)}
     </>
   );
 };

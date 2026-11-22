@@ -6,9 +6,9 @@ import {validateEditorialStoryboard} from '../packages/shared/src/editorial-stor
 const fixture = JSON.parse(readFileSync('fixtures/storyboards/toolpilot-agents-100s.json', 'utf8'));
 const copy = () => structuredClone(fixture);
 
-test('100-second plan covers every beat and the 30-second preview', () => {
+test('100-second episode covers every beat and scene', () => {
   const s = validateEditorialStoryboard(copy());
-  assert.equal(s.scenes.filter(scene => scene.status === 'implemented').reduce((n, scene) => n + scene.durationMs, 0), 30000);
+  assert.equal(s.scenes.filter(scene => scene.status === 'implemented').reduce((n, scene) => n + scene.durationMs, 0), 100000);
   assert.equal(s.scenes.at(-1)!.startMs + s.scenes.at(-1)!.durationMs, 100000);
 });
 

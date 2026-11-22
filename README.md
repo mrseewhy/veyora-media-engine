@@ -9,7 +9,7 @@ Local-first, multi-channel production platform for **Veyora House's 13 planned m
 - `agents:render:all` currently generates three **30-second previews** with fitted landscape layouts, not full native-responsive 100-second exports.
 
 ## Status
-**The 10-second latency proof remains a regression composition.** A separate 30-second opening preview of **AI Agents in 100 Seconds** is rendered for review. The complete 100-second script and storyboard are drafted; the remaining 70 seconds have not been implemented or rendered.
+**The 10-second latency proof remains a regression composition.** The 100-second **AI Agents in 100 Seconds** episode has landscape, vertical, and square compositions and a local production command. The earlier 30-second preview remains available. Publication requires human review of visuals, narration, and estimated caption timing.
 
 ## Chosen architecture
 - **CLI + worker:** Node.js, TypeScript
@@ -25,9 +25,8 @@ Local-first, multi-channel production platform for **Veyora House's 13 planned m
 Remotion is now the visual layer for the proof. Its licence was reviewed for this use; see [Licensing](docs/Licensing.md). A paid company licence is required if the producing organisation falls outside Remotion's free-use terms.
 
 ## Build order
-1. Review and approve the rendered 10-second latency proof before expanding duration.
-2. Automate structured episode JSON -> MP4, captions and QA report.
-3. Add AI research and script generation with source review.
+1. Review the final 100-second episode and captions before publication.
+2. Add AI research and script generation with source review.
 4. Add Next.js dashboard, PostgreSQL and durable worker jobs.
 5. Add approved YouTube upload/publishing.
 6. Add multi-channel templates and analytics.
@@ -111,3 +110,10 @@ Run `npm run voice:sample:technical` for a 30-second Gemini Flash technical narr
 
 ## Technical video proof
 Run `npm run video:technical` after generating the 30-second Gemini narration. The video uses six Chrome captures of the original local demo UI in `media/demo/` and exports to `data/technical-video/toolpilot-technical-30s.mp4`. The UI contains illustrative sample metrics, labeled on-screen.
+# Full AI Agents episode
+
+Run `npm run episode:produce` for the 100-second ToolPilot episode. Pass `ai-agents-100s` or a storyboard JSON path as the first argument. Set `EPISODE_OUTPUT_DIR` to change the output directory. The command writes three H.264/AAC videos, captions, contact sheets, and machine-readable reports under `data/episodes/ai-agents-100s/`. Generated media is ignored by Git.
+
+The three native Remotion compositions share one storyboard and timeline. Landscape keeps the original opening artwork; portrait and square use layouts designed for their frames. The production command caches narration and reuses valid format outputs after an interruption. It tries the local macOS `say` voice first, then uses a verified cached narration recording when local speech is unavailable. It never calls a paid voice service. `EPISODE_SAY_VOICE` selects the local voice. The existing Gemini voice adapter remains available through its separate command.
+
+Captions for the full episode are distributed across each scripted beat by phrase length. They are deterministic but are **estimated timings**, not forced alignment. Automated QA checks media dimensions, codecs, frame rate, duration, and caption coverage. The contact sheets and final sound mix still require human review before publication. Background music is omitted because no licensed track is configured.
