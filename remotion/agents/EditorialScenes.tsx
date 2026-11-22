@@ -1,7 +1,7 @@
 import React from 'react';
 import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {BrandMark} from '../components/BrandMark';
-import {theme} from '../theme';
+import {theme, videoLayout} from '../theme';
 import type {EditorialSceneType} from '../../packages/shared/src/editorial-storyboard';
 
 const ink='#101820', paper='#F4F0E6', lime='#B6F84A', coral='#FF715B', blue='#72CBF3';
@@ -11,11 +11,16 @@ const label:React.CSSProperties={fontFamily:theme.fonts.mono,fontSize:21,fontWei
 const display:React.CSSProperties={fontFamily:theme.fonts.sans,fontWeight:900,letterSpacing:-5,lineHeight:.95};
 const body:React.CSSProperties={fontFamily:theme.fonts.sans,fontWeight:650};
 
+// Content-only transform: existing animation coordinates remain unchanged.
+// The full-bleed scene background, top stripe and footer stay outside this layer.
+const safeScale = videoLayout.contentScale;
+const safeLeft = (videoLayout.width - videoLayout.width * safeScale) / 2;
+const safeTop = (videoLayout.height - videoLayout.height * safeScale) / 2;
 const Frame:React.FC<{dark?:boolean;index:string;children:React.ReactNode;accent?:string}>=({dark=false,index,children,accent=lime})=><div style={{position:'absolute',inset:0,background:dark?ink:paper,color:dark?paper:ink,overflow:'hidden'}}>
   <div style={{position:'absolute',top:0,left:0,right:0,height:10,background:accent}}/>
-  <div style={{position:'absolute',top:38,left:62,display:'flex',alignItems:'center',gap:26,zIndex:10}}><BrandMark size={26} color={dark?paper:ink}/><span style={{...label,fontSize:15,opacity:.5,borderLeft:`1px solid ${dark?'#577':'#999'}`,paddingLeft:24}}>AI AGENTS / 100</span></div>
-  <div style={{position:'absolute',top:46,right:66,...label,fontSize:16,opacity:.48}}>{index}</div>
-  {children}
+  <div style={{position:'absolute',top:videoLayout.safeArea.top,left:videoLayout.safeArea.left,display:'flex',alignItems:'center',gap:26,zIndex:10}}><BrandMark size={26} color={dark?paper:ink}/><span style={{...label,fontSize:15,opacity:.5,borderLeft:`1px solid ${dark?'#577':'#999'}`,paddingLeft:24}}>AI AGENTS / 100</span></div>
+  <div style={{position:'absolute',top:videoLayout.safeArea.top,right:videoLayout.safeArea.right,...label,fontSize:16,opacity:.48}}>{index}</div>
+  <div style={{position:'absolute',left:safeLeft,top:safeTop,width:videoLayout.width,height:videoLayout.height,transform:`scale(${safeScale})`,transformOrigin:'top left'}}>{children}</div>
   <div style={{position:'absolute',bottom:25,left:64,right:64,height:2,background:dark?'#39454b':'#c5c0b4'}}/>
 </div>;
 const DotGrid:React.FC<{dark?:boolean}>=({dark})=><div style={{position:'absolute',inset:0,opacity:dark?.13:.17,backgroundImage:`radial-gradient(${dark?'#fff':'#233'} 1.5px,transparent 1.5px)`,backgroundSize:'30px 30px'}}/>;
