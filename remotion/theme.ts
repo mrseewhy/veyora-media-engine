@@ -1,3 +1,14 @@
+export const VIDEO_FRAME = {width: 1920, height: 1080} as const;
+export const videoSafeArea = {left: 150, right: 150, top: 100, bottom: 100} as const;
+
+/** Safe foreground area. Decorative backgrounds may extend outside these bounds. */
+export const foregroundBounds = {
+  left: videoSafeArea.left,
+  top: videoSafeArea.top,
+  right: VIDEO_FRAME.width - videoSafeArea.right,
+  bottom: VIDEO_FRAME.height - videoSafeArea.bottom,
+} as const;
+
 export const theme = {
   colors: {
     bg: '#070D14',
