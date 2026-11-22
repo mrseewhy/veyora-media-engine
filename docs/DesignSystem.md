@@ -16,6 +16,30 @@ Use existing official ToolPilot logo/banner as reference; do not recreate an unr
 ## Editorial concept explainer preview
 The **AI Agents in 100 Seconds** opening uses warm paper, dark ink, cyan and ToolPilot lime across distinct comic, diagram and kitchen shots. Original illustrated characters and props carry the analogy; interface panels are reserved for actual technical evidence later in the episode. Short stamps, match cuts and purposeful character motion should follow narration. The 30-second cut is a review artifact, not a new universal template. See [AgentsEpisode](AgentsEpisode.md).
 
+## Video layout and safe areas (authoritative rule)
+Applies to **every ToolPilot video scene**, including future episodes. The AI Agents 30-second preview revealed that content can feel crowded even when animations are strong. **Preserve the approved editorial style, scene structure and animation; adjust layout, not art direction.**
+
+### 1920 × 1080 landscape baseline
+- **Horizontal safe margin:** 150 px minimum on **each** side for important foreground content (safe content x-range: **150–1770**).
+- **Vertical safe margin:** 100 px minimum at top and bottom (safe content y-range: **100–980**).
+- Keep headlines, subtitles/captions, illustrations, labels, logos, UI callouts and critical action **inside** these boundaries throughout their visible animation, including entrance/exit frames.
+- Use generous negative space and consistent gaps between headline, subject and supporting text. Avoid oversized elements pressing against the frame edge or crowding one another.
+- The safe area is a **minimum inset**, not a target to fill. Prefer more breathing room when a composition benefits.
+- Background colors, textures, ambient decoration and deliberate full-bleed transitions **may** extend to the frame edges; meaningful text or subjects must not.
+- For alternative aspect ratios, scale the insets proportionally from the 1920 × 1080 reference, then inspect and adjust for platform UI overlays (especially vertical video). Do not assume proportional scaling alone makes a vertical layout safe.
+
+### Implementation guidance (not yet implemented by this document)
+- Define one shared source of truth in `remotion/theme.ts`, for example `videoSafeArea: { left: 150, right: 150, top: 100, bottom: 100 }`, and consume it from the shared `Stage` layout and all scene components.
+- Prefer shared content containers and spacing tokens over one-off scene offsets; avoid magic numbers in individual scenes.
+- Keep camera transforms and animated elements within safe bounds at their most extreme positions; use clipping only for intentional masked effects.
+- Keep the current 30-second scene visuals and motion unchanged apart from spacing and any resulting readability adjustments.
+
+### Validation and review
+- Add layout assertions or frame-bound checks where practical, plus representative frame captures at scene starts, transitions, animation extremes and end frames.
+- Review the complete video at desktop and mobile sizes; verify no clipped captions, logos, headlines, key illustrations or technical evidence.
+- Treat a safe-area violation as a visual QA failure; allow explicit, documented exceptions only for decorative/full-bleed elements.
+- Documentation alone does not enforce this: implement shared Remotion tokens and tests as a **separate code change**, then rerender the same 30-second clip for comparison.
+
 ## Dashboard (later phase)
 - Minimal dark/light UI with accessible contrast, clear statuses and visible render progress.
 - Pages: Queue, Episodes, Editor/Storyboard, Assets, Render jobs, Approvals, Publishing, Settings.
