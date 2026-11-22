@@ -21,7 +21,8 @@
     "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "intelligence": "npm run build && node dist/packages/intelligence/src/cli.js"
+    "intelligence": "npm run build && node dist/packages/intelligence/src/cli.js",
+    "agents:render:all": "npm run build && node dist/packages/renderer/src/render-agents-formats.js"
   },
   "devDependencies": {
     "@ffmpeg-installer/darwin-arm64": "^4.1.5",
