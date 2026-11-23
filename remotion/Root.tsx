@@ -12,8 +12,10 @@ import {
 import agentsJson from '../fixtures/storyboards/toolpilot-agents-100s.json';
 import {validateEditorialStoryboard} from '../packages/shared/src/editorial-storyboard';
 import {AgentsPreview} from './agents/AgentsPreview';
+import {Agents15s, FRAMES} from './agents/Agents15s';
 import {ToolPilotIntro, TOOLPILOT_INTRO_FRAMES} from './agents/ToolPilotIntro';
 import {ToolPilotOutro, TOOLPILOT_OUTRO_FRAMES} from './agents/ToolPilotOutro';
+import {SingularityEpisode, defaultSingularityProps, type SingularityProps} from './agents/SingularityEpisode';
 
 const storyboard: Storyboard = validateStoryboard(storyboardJson);
 
@@ -40,6 +42,21 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="ToolPilotOutroV1" component={ToolPilotOutro} width={1920} height={1080} fps={30} durationInFrames={TOOLPILOT_OUTRO_FRAMES} />
       <Composition id="ToolPilotOutroV1Vertical" component={ToolPilotOutro} width={1080} height={1920} fps={30} durationInFrames={TOOLPILOT_OUTRO_FRAMES} />
       <Composition id="ToolPilotOutroV1Square" component={ToolPilotOutro} width={1080} height={1080} fps={30} durationInFrames={TOOLPILOT_OUTRO_FRAMES} />
+      {([
+        ['ToolPilotSingularityLandscape', 1920, 1080],
+        ['ToolPilotSingularityVertical', 1080, 1920],
+        ['ToolPilotSingularitySquare', 1080, 1080],
+      ] as const).map(([id, width, height]) => <Composition
+        key={id}
+        id={id}
+        component={SingularityEpisode}
+        defaultProps={defaultSingularityProps}
+        width={width}
+        height={height}
+        fps={30}
+        durationInFrames={3630}
+        calculateMetadata={({props}: {props: SingularityProps}) => ({durationInFrames: 150 + props.segmentFrames.reduce((a, b) => a + b, 0) + 240, fps: 30, width, height})}
+      />)}
       <Composition
         id="ToolPilotLatency10s"
         component={LatencyVideo}
@@ -69,6 +86,15 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
         fps={30}
         durationInFrames={900}
+      />
+      <Composition
+        id="ToolPilotAgents15s"
+        component={Agents15s}
+        defaultProps={{storyboard: validateEditorialStoryboard(agentsJson)}}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={FRAMES}
       />
     </>
   );
