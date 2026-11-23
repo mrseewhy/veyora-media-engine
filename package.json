@@ -26,7 +26,8 @@
     "intelligence": "npm run build && node dist/packages/intelligence/src/cli.js",
     "agents:render:all": "npm run build && node dist/packages/renderer/src/render-agents-formats.js",
     "visual:prepare": "npm run build && node dist/packages/renderer/src/visual-director-cli.js",
-    "visual:plan": "npm run build && node dist/packages/renderer/src/visual-plan-ollama.js"
+    "visual:plan": "npm run build && node dist/packages/renderer/src/visual-plan-ollama.js",
+    "visual:proof:render": "npm run build && node dist/packages/renderer/src/render-singularity-visual-proof.js"
   },
   "devDependencies": {
     "@ffmpeg-installer/darwin-arm64": "^4.1.5",
