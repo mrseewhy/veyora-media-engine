@@ -90,3 +90,8 @@ Required: a real or visibly labeled simulated interface, actual or clearly simul
 4. Build three scene primitives and scene-only preview.
 5. Render and manually review 10 seconds.
 6. Add editor UI only after the scene quality is accepted; reuse the exact schema in CLI and dashboard.
+
+
+## Shot-level Visual Director expansion (approved requirement; implementation pending)
+The current scene types are **not an exhaustive creative menu**. The Visual Director layer described in [VisualDirector.md](VisualDirector.md) may plan photographs, footage, cut-outs, recognizable editorial caricatures of named people, original/AI illustration and limited generated video alongside existing Remotion primitives. Each proposed shot maps an exact narration phrase to subject, visual intent, visual asset type, actual asset provenance, rights/disclosure state, motion, shot-level palette, safe area, alternative formats and human review. Prefer meaningful evidence or recognizable subjects to generic boxes; do not present synthetic people as real documentary footage. No “blue” default for content. Maintain versioned audio timing, source claims and schema compatibility when implementing; the illustrative JSON is not the current runtime contract.
+
