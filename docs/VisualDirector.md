@@ -106,3 +106,7 @@ Run on **scene list + contact sheet + preview**, not only on the finished video:
 
 ## Existing documents and precedence
 Read [AGENTS.md](../AGENTS.md), [ToolPilotBrandMotion](ToolPilotBrandMotion.md), [ToolPilotVoice](ToolPilotVoice.md), [StoryboardSystem](StoryboardSystem.md), [VideoPipeline](VideoPipeline.md), [Licensing](Licensing.md), and [Tasks](Tasks.md). This document refines **content visuals**; it does not alter fixed ToolPilot bumper durations, voice, licensing duties or per-format requirements. Other Veyora channels must supply their own identity and artistic rules.
+
+
+## Latest production priority (2026-11-23)
+For the next delivery, [FullEpisodeProduction.md](FullEpisodeProduction.md) supersedes the earlier 15-second proof rollout: produce the **complete Singularity Explained** episode. Visual Director output must describe observable **start state → action → changed end state** per shot, fast-paced story-led visual progression (often 1–3 seconds per new visual idea, not arbitrary cuts), and precise vocal FX/SFX/music cues. Preserve approved narration; do not use Ollama as a compulsory planning dependency. The approved earlier `agents-0-30.mp4` is the minimum quality benchmark. Do not merge the unverified PR #4 foundation as if it had solved creative quality.
