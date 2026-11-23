@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "channelId": "toolpilot",
+  "episodeId": "singularity-visual-15s",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "audio": {
+    "path": "../../data/approved-singularity-15s.wav",
+    "durationMs": 15000,
+    "locked": true
+  },
+  "assets": [
+    {
+      "id": "elon-portrait",
+      "mode": "original_illustration",
+      "status": "needs_asset",
+      "generated": false,
+      "disclosure": "Editorial caricature; not an actual recording"
+    },
+    {
+      "id": "recursive-process",
+      "mode": "motion_graphic",
+      "status": "needs_asset",
+      "generated": false
+    }
+  ],
+  "shots": [
+    {
+      "id": "elon-editorial",
+      "beatId": "public-discussion",
+      "startMs": 0,
+      "endMs": 7000,
+      "narration": "Replace with the exact approved 0-7s narration before production.",
+      "intent": "show_person",
+      "subject": "Elon Musk (editorial caricature, not a quote)",
+      "mode": "original_illustration",
+      "assetIds": [
+        "elon-portrait"
+      ],
+      "palette": [
+        "warm ivory",
+        "amber",
+        "charcoal"
+      ],
+      "composition": "Large identifiable editorial portrait with contextual AI research imagery, no headline card",
+      "motion": "Slow camera push and layered parallax",
+      "syntheticDisclosure": "Editorial illustration",
+      "review": "proposed"
+    },
+    {
+      "id": "recursive-improvement",
+      "beatId": "self-improvement",
+      "startMs": 7000,
+      "endMs": 15000,
+      "narration": "Replace with the exact approved 7-15s narration before production.",
+      "intent": "show_process",
+      "subject": "Conceptual recursive AI capability improvement",
+      "mode": "motion_graphic",
+      "assetIds": [
+        "recursive-process"
+      ],
+      "palette": [
+        "black",
+        "warm white",
+        "coral"
+      ],
+      "composition": "A model improves a successor; each successive iteration visibly changes capability",
+      "motion": "Causal state-change sequence with kinetic camera move",
+      "review": "proposed"
+    }
+  ]
+}
