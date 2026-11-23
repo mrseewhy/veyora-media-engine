@@ -48,3 +48,8 @@ Applies to **every ToolPilot video scene**, including future episodes. The AI Ag
 
 ## Acceptance
 At least one human review on mobile and desktop; no clipped text, unreadable captions, accidental silence or inconsistent branding.
+
+
+## Updated visual language: story over brand palette (2026-11-23)
+**This section supersedes earlier suggestions that blue/cyan/purple or dark backgrounds should dominate all scenes.** In educational content **there is no mandatory background colour or persistent blue treatment**. The logo, voice, typography, pacing, clear editing and approved bumper sequences carry ToolPilot identity. Any appropriate cinematic, warm, neutral, vibrant, monochrome, photographic or illustrative colour scheme is permitted, provided contrast and safe areas pass. Use real subjects (including correctly identified people), contextual imagery and intentional composition. Do not recycle title-card or dashboard layouts as the default treatment for narration. Implement mixed media and shot-level palette direction per [VisualDirector.md](VisualDirector.md). Original artwork requirements still apply; licensed assets and clearly framed AI generations are allowed with provenance and rights reviews.
+
