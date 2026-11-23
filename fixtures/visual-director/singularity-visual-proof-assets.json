@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "episodeId": "singularity-visual-15s",
+  "status": "review-draft",
+  "assets": [
+    {
+      "id": "elon-editorial",
+      "localPath": "public/generated/singularity-visual/elon-editorial.png",
+      "source": "OpenAI built-in image generation",
+      "creator": "OpenAI image model under Veyora editorial direction",
+      "mode": "ai_image",
+      "prompt": "Original editorial illustration, recognizable respectful caricature of Elon Musk in a warm research setting, gouache and ink, no text, no logos, no implied endorsement",
+      "disclosure": "EDITORIAL ILLUSTRATION",
+      "rightsStatus": "pending operator review"
+    },
+    {
+      "id": "recursive-workshop",
+      "localPath": "public/generated/singularity-visual/recursive-workshop.png",
+      "source": "OpenAI built-in image generation",
+      "creator": "OpenAI image model under Veyora editorial direction",
+      "mode": "ai_image",
+      "prompt": "Cinematic speculative illustration of three physical machine architectures, each fabricating a more intricate successor, amber and coral on charcoal, no labels, boxes or arrows",
+      "disclosure": "CONCEPTUAL ILLUSTRATION",
+      "rightsStatus": "pending operator review"
+    }
+  ],
+  "narration": {
+    "source": "Existing Gemini Flash TTS / Puck takes from singularity-explained narration manifest",
+    "segments": ["claim, first 4.1 seconds", "feedback, first 9.833 seconds"],
+    "regenerated": false
+  }
+}

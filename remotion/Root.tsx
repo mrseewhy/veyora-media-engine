@@ -14,6 +14,7 @@ import {validateEditorialStoryboard} from '../packages/shared/src/editorial-stor
 import {AgentsPreview} from './agents/AgentsPreview';
 import {ToolPilotIntro, TOOLPILOT_INTRO_FRAMES} from './agents/ToolPilotIntro';
 import {ToolPilotOutro, TOOLPILOT_OUTRO_FRAMES} from './agents/ToolPilotOutro';
+import {SingularityVisualProof} from './agents/SingularityVisualProof';
 
 const storyboard: Storyboard = validateStoryboard(storyboardJson);
 
@@ -34,6 +35,7 @@ const calculateMetadata: CalculateMetadataFunction<LatencyVideoProps> = ({
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition id="SingularityVisualProof15s" component={SingularityVisualProof} width={1920} height={1080} fps={30} durationInFrames={450} />
       <Composition id="ToolPilotIntroV1" component={ToolPilotIntro} width={1920} height={1080} fps={30} durationInFrames={TOOLPILOT_INTRO_FRAMES} />
       <Composition id="ToolPilotIntroV1Vertical" component={ToolPilotIntro} width={1080} height={1920} fps={30} durationInFrames={TOOLPILOT_INTRO_FRAMES} />
       <Composition id="ToolPilotIntroV1Square" component={ToolPilotIntro} width={1080} height={1080} fps={30} durationInFrames={TOOLPILOT_INTRO_FRAMES} />
