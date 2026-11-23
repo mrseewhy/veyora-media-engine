@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import sharp from 'sharp';
 import {ffmpegPath, probe, run} from './media-tools.js';
 import {validateVideoQa} from './video-qa.js';
+import {validateShotPlan} from '../../shared/src/shot-plan.js';
 import {normalizeVideoAudio} from './normalize-video-audio.js';
 
 const root = resolve('data/episodes/toolpilot/singularity-explained');
@@ -17,6 +18,13 @@ const narration = JSON.parse(await readFile(resolve(root, 'narration-manifest.js
   contentFrames: number; items: Array<{id: string; durationFrames: number; audioPath: string; sha256: string}>;
 };
 if (narration.items.length !== episode.segments.length || narration.contentFrames < 3000 || narration.contentFrames > 3600) throw new Error('Narration preflight failed');
+const shotPlan = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/shot-list.json', 'utf8')) as {shots: import('../../shared/src/shot-plan.js').ExecutableShot[]};
+const planQa = validateShotPlan(shotPlan.shots, episode.segments.map(s => s.id), narration.items.map(i => i.durationFrames));
+for (const item of narration.items) {
+  const audio = await readFile(resolve('public', item.audioPath));
+  const actual = createHash('sha256').update(audio).digest('hex');
+  if (actual !== item.sha256) throw new Error(`Locked narration mismatch: ${item.id}`);
+}
 const segmentFrames = narration.items.map((item) => item.durationFrames);
 const totalFrames = 150 + narration.contentFrames + 240;
 const formats = [
@@ -26,6 +34,8 @@ const formats = [
 ] as const;
 const paths = {final: resolve(root, 'final'), captions: resolve(root, 'captions'), qa: resolve(root, 'qa'), metadata: resolve(root, 'metadata')};
 await Promise.all(Object.values(paths).map((dir) => mkdir(dir, {recursive: true})));
+await writeFile(resolve(paths.qa, 'shot-plan-qa.json'), JSON.stringify({passed: planQa.errors.length === 0, ...planQa, humanReview: 'pending'}, null, 2));
+if (planQa.errors.length) throw new Error(`Shot plan preflight failed: ${planQa.errors.length} errors; see ${resolve(paths.qa, 'shot-plan-qa.json')}`);
 const propsPath = resolve(paths.metadata, 'render-props.json');
 await writeFile(propsPath, JSON.stringify({segmentFrames}));
 

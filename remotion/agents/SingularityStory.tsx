@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import episode from '../../episodes/toolpilot/singularity-explained/script.json';
+import shotPlan from '../../episodes/toolpilot/singularity-explained/shot-list.json';
 
 const clamp = (v: number) => Math.max(0, Math.min(1, v));
 const reveal = (f: number, at = 0, span = 18) => clamp((f - at) / span);
@@ -52,11 +53,13 @@ export const SingularityStory: React.FC<{segmentIndex: number; duration: number}
   const frame=useCurrentFrame();
   const {width,height}=useVideoConfig();
   const compact=width/height<1.5;
-  const list=beats[segmentIndex];
-  const beatIndex=Math.min(list.length-1,Math.floor(frame/duration*list.length));
-  const local=frame-Math.floor(beatIndex*duration/list.length);
+  const segmentId=episode.segments[segmentIndex].id;
+  const list=shotPlan.shots.filter((shot)=>shot.actId===segmentId);
+  const segmentStart=list[0].startFrame;
+  const active=list.find((shot)=>frame>=shot.startFrame-segmentStart && frame<shot.endFrame-segmentStart) ?? list[list.length-1];
+  const local=frame-(active.startFrame-segmentStart);
   const palette=palettes[segmentIndex];
-  const beat=list[beatIndex];
+  const beat=active.subject;
   const line=episode.segments[segmentIndex].text.match(/[^.!?]+[.!?]+[’'”"]?/g)?.map(x=>x.trim()) ?? [];
   const caption=line[Math.min(line.length-1,Math.floor(frame/duration*line.length))] ?? '';
   return <AbsoluteFill style={{backgroundColor:palette.bg,color:palette.fg,fontFamily:'Inter, Arial, sans-serif',overflow:'hidden'}}>
