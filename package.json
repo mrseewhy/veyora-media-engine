@@ -24,6 +24,7 @@
     "voice:sample:singularity": "npm run build && node dist/packages/renderer/src/sample-singularity-voice.js",
     "voice:singularity": "npm run build && node dist/packages/renderer/src/produce-singularity-voice.js",
     "episode:singularity:render": "npm run build && node dist/packages/renderer/src/render-singularity-episode.js",
+    "episode:singularity:inspect": "npm run build && node dist/packages/renderer/src/shot-contact-sheets.js",
     "episode:singularity:finalize": "npm run build && node dist/packages/renderer/src/finalize-singularity-outputs.js",
     "agents:voice": "npm run build && node dist/packages/renderer/src/agents-voice.js",
     "db:generate": "drizzle-kit generate",

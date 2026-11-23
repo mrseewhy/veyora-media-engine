@@ -7,6 +7,7 @@ import {ffmpegPath, probe, run} from './media-tools.js';
 import {validateVideoQa} from './video-qa.js';
 import {validateShotPlan} from '../../shared/src/shot-plan.js';
 import {normalizeVideoAudio} from './normalize-video-audio.js';
+import {generateSoundscape} from './soundscape.js';
 
 const root = resolve('data/episodes/toolpilot/singularity-explained');
 const episode = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/script.json', 'utf8')) as {
@@ -20,12 +21,26 @@ const narration = JSON.parse(await readFile(resolve(root, 'narration-manifest.js
 if (narration.items.length !== episode.segments.length || narration.contentFrames < 3000 || narration.contentFrames > 3600) throw new Error('Narration preflight failed');
 const shotPlan = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/shot-list.json', 'utf8')) as {shots: import('../../shared/src/shot-plan.js').ExecutableShot[]};
 const planQa = validateShotPlan(shotPlan.shots, episode.segments.map(s => s.id), narration.items.map(i => i.durationFrames));
+const assetManifest = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/visual-assets.json', 'utf8')) as {assets: Array<{id: string; localPath?: string; sourcePath?: string; sha256?: string; rights: string}>};
+const assets = new Map(assetManifest.assets.map(asset => [asset.id, asset]));
+for (const shot of shotPlan.shots) for (const id of shot.assetIds) {
+  const asset = assets.get(id);
+  if (!asset) { planQa.errors.push(`${shot.shotId}: undeclared asset ${id}`); continue; }
+  if (!asset.rights.startsWith('cleared')) planQa.errors.push(`${id}: rights not cleared`);
+  const path = asset.localPath ?? asset.sourcePath;
+  if (!path) { planQa.errors.push(`${id}: missing asset path`); continue; }
+  try {
+    const bytes = await readFile(path);
+    if (asset.sha256 && createHash('sha256').update(bytes).digest('hex') !== asset.sha256) planQa.errors.push(`${id}: file hash mismatch`);
+  } catch { planQa.errors.push(`${id}: file unavailable at ${path}`); }
+}
 for (const item of narration.items) {
   const audio = await readFile(resolve('public', item.audioPath));
   const actual = createHash('sha256').update(audio).digest('hex');
   if (actual !== item.sha256) throw new Error(`Locked narration mismatch: ${item.id}`);
 }
 const segmentFrames = narration.items.map((item) => item.durationFrames);
+await generateSoundscape(resolve('public/generated/singularity-explained/soundscape.wav'), shotPlan.shots, narration.contentFrames);
 const totalFrames = 150 + narration.contentFrames + 240;
 const formats = [
   {name: 'landscape', id: 'ToolPilotSingularityLandscape', width: 1920, height: 1080},
@@ -96,7 +111,7 @@ for (const format of formats) {
   artifacts.push(result);
   if (!result.qaPassed) console.error(`QA failed: ${format.name}`);
 }
-const report = {channelId: episode.channelId, seriesId: episode.seriesId, episodeId: episode.episodeId, format: 'three-native-formats', configVersion: episode.configVersion, title: episode.title, durationFrames: totalFrames, contentFrames: narration.contentFrames, sources: episode.sources, narration, captionsPath: resolve(paths.captions, 'singularity-explained.srt'), captionsTiming: 'sentence timing estimated from word proportions within measured narration segments; human sync review required', artifacts, humanReviewStatus: 'proposed'};
+const report = {channelId: episode.channelId, seriesId: episode.seriesId, episodeId: episode.episodeId, format: 'three-native-formats', configVersion: episode.configVersion, title: episode.title, durationFrames: totalFrames, contentFrames: narration.contentFrames, sources: episode.sources, narration, visualAssets: assetManifest.assets, captionsPath: resolve(paths.captions, 'singularity-explained.srt'), captionsTiming: 'sentence timing estimated from word proportions within measured narration segments; human sync review required', artifacts, humanReviewStatus: 'proposed'};
 await writeFile(resolve(paths.metadata, 'artifact-manifest.json'), JSON.stringify(report, null, 2));
 await writeFile(resolve(paths.metadata, 'production-report.md'), `# ${episode.title}\n\nTotal: ${(totalFrames / 30).toFixed(2)} seconds; content: ${(narration.contentFrames / 30).toFixed(2)} seconds.\n\nNarrator: Gemini Flash TTS / Puck, operator-approved sample.\n\nQA: ${artifacts.filter((a) => a.qaPassed).length}/3 format checks passed. Caption sentence timing is estimated and requires human sync review. Visual and factual approval remain pending.\n\nSources:\n${episode.sources.map((s) => `- ${s.claim}: ${s.url}`).join('\n')}\n`);
 if (artifacts.some((a) => !a.qaPassed)) process.exitCode = 1;

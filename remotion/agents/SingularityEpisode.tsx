@@ -66,6 +66,7 @@ export const SingularityEpisode: React.FC<SingularityProps> = ({segmentFrames}) 
   let cursor = TOOLPILOT_INTRO_FRAMES;
   return <AbsoluteFill style={{backgroundColor: '#030612'}}>
     <Sequence from={0} durationInFrames={TOOLPILOT_INTRO_FRAMES}><ToolPilotIntro /></Sequence>
+    <Sequence from={TOOLPILOT_INTRO_FRAMES} durationInFrames={segmentFrames.reduce((a,b)=>a+b,0)}><Audio src={staticFile('generated/singularity-explained/soundscape.wav')} volume={0.35} /></Sequence>
     {episode.segments.map((segment, index) => {
       const start = cursor;
       const duration = segmentFrames[index];
