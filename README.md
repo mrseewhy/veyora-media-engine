@@ -118,3 +118,25 @@ Run `npm run video:technical` after generating the 30-second Gemini narration. T
 - The `Singularity Explained` visual feedback established that good narration plus repeated title cards is **not** production quality. ToolPilot blue is optional within content, not a required background; keep brand identity in bumpers, voice, typography and editing.
 - **Status:** specification committed only; Visual Director execution, asset-provider adapters and improved episode renders **remain unimplemented**. See [Tasks](docs/Tasks.md).
 
+
+
+## Visual Director foundation (implementation branch, not yet production-ready)
+
+The first executable foundation is in `packages/shared/src/visual-director.ts`, `packages/renderer/src/visual-plan-ollama.ts` and `packages/renderer/src/visual-director-cli.ts`. It **does not yet render a new video** or automatically acquire licensed/AI assets.
+
+**Plan locally with Ollama:** provide an input JSON containing `channelId`, `episodeId`, `audio:{path,durationMs,locked:true}` and `beats:[{id,startMs,endMs,narration}]`. Beats must cover the measured, approved narration exactly. Then run:
+
+```bash
+npm ci
+npm test
+VEYORA_OLLAMA_MODEL=qwen3.5:4b npm run visual:plan -- input-beats.json data/visual-director/proposal.json
+npm run visual:prepare -- data/visual-director/proposal.json
+```
+
+The planner requests structured directions from a **locally running** Ollama API, does not regenerate narration, and creates proposed shots with deliberately unresolved asset records. It may fail if Ollama is unavailable or the model emits invalid output. **No remote image/video service is invoked.**
+
+**Acquire/approve assets:** review proposed shot subjects and art direction, create or license each actual image/clip, fill in `assets[].path` relative to the visual plan file, `creator`, `license`, `rightsReviewed:true`, and change `status` to `ready` only after review. The `visual:prepare` command validates the plan, copies ready local assets into ignored storage, computes SHA-256 provenance, and writes `creative-preflight.json` with blockers and visual-variety warnings. A status of `needs_asset` is expected before acquisition; this command exits 2 for unresolved assets.
+
+The proposed 15-second `fixtures/visual-director/singularity-15s.json` is a **storyboard placeholder**, not an actual audio-aligned episode: replace its placeholder narration and timing with measured approved audio before producing footage. No Elon Musk photo or caricature has been acquired/generated. Do not imply that the proof MP4 exists.
+
+**Remaining work:** actual source/licence discovery, AI image generation with spend gates, Remotion mixed-media scene components, shot previews, visual QA from frames, three native format renders and human creative approval. Preserve existing working compositions.
