@@ -146,3 +146,17 @@
 - [ ] Add creative QA flags for repetitive card composition, excessive empty backgrounds, palette lock-in, weak subject relevance and misleading synthetic documentary imagery.
 - [ ] Preserve existing ToolPilot intro/outro duration, voice and regression assets; do not silently pay for image/video generation.
 
+
+
+## Current highest priority: full-episode storytelling reset (2026-11-23)
+**Specification:** [FullEpisodeProduction.md](FullEpisodeProduction.md). This supersedes the earlier 15-second Singularity proof as the next deliverable; retain historical task entries for traceability.
+- [ ] Audit current main, approved full Singularity audio/script, earlier best `agents-0-30.mp4`, rejected render and rights-cleared assets; preserve working code.
+- [ ] Do not adopt PR #4/Ollama as production solution; avoid unnecessary new LLM/dependency.
+- [ ] Produce narration-timed **full-episode** acts and shot list with visible start state → action → changed end state and sound cues.
+- [ ] Source/create concrete, rights-reviewed mixed-media assets; no generic filler, repeated slide layouts or fabricated likeness/quotes.
+- [ ] Implement fast-paced action-led Remotion scenes and editorial transitions, preserving voice/brand/safe margins.
+- [ ] Add selective **vocal effects**, character dialogue treatment only when appropriate, original/licensed SFX and dynamically ducked music; preserve approved narrator.
+- [ ] Render complete Singularity Explained landscape video, captions, contact sheet, asset/audio manifests, technical QA and timecoded creative defect list.
+- [ ] Fix failed shots and audio mix, rerender, compare to best earlier reference, and obtain operator approval.
+- [ ] After landscape approval, produce native 9:16 and 1:1 adaptations and per-format QA.
+- [ ] Push tested implementation branch and open PR; merge only after approval. No publishing.
