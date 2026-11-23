@@ -132,3 +132,17 @@
 - [ ] Preserve existing artwork and 10-second regression composition; do not add paid dependencies without approval.
 
 **Done when:** the complete 100-second AI Agents episode renders and passes QA and human review in all three aspect ratios. No publishing automation is implied.
+
+
+## Visual Director and mixed-media quality reset (approved 2026-11-23; not yet implemented)
+- [x] Document the approved artistic direction and Visual Director contract in [VisualDirector.md](VisualDirector.md).
+- [ ] Map the existing editorial storyboard schema and asset manifest to a versioned shot-level Visual Director output without breaking the regression scene.
+- [ ] Validate named-entity relevance, claimed authenticity, asset type, provenance, cost approval and real asset existence.
+- [ ] Add original-illustration / licensed-photo / stock-video / permitted screenshot / AI-image asset acquisition workflows with explicit rights and spending checks; cache reusable approved assets.
+- [ ] Generate a 15-second **Singularity Explained** visual-only or existing-voice proof with a deliberately sourced real-person/caricature shot and purposeful non-slide visual storytelling.
+- [ ] Render a representative contact sheet and judge against the previous repetitive-card look; get operator approval before full-length renders.
+- [ ] Integrate per-scene creative feedback and shot-level rerender, preserving the accepted voice take.
+- [ ] Produce 30-second mixed-media validation and human creative quality review; then native 16:9, 9:16 and 1:1 full episodes.
+- [ ] Add creative QA flags for repetitive card composition, excessive empty backgrounds, palette lock-in, weak subject relevance and misleading synthetic documentary imagery.
+- [ ] Preserve existing ToolPilot intro/outro duration, voice and regression assets; do not silently pay for image/video generation.
+

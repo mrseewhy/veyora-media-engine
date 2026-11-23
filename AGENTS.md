@@ -60,3 +60,8 @@ Run relevant tests, typechecks, render smoke tests and full requested renders wh
 Do not push changes or publish videos when the task explicitly requires review first. If operating via a GitHub-only connector without a local runtime, distinguish committed source changes from **unexecuted** code and unrendered outputs.
 
 See `docs/MultiChannelArchitecture.md` for the migration strategy. Keep this file updated when the operational contract actually changes.
+
+
+## Visual direction: approved editorial standard (2026-11-23)
+**Required reading:** [`docs/VisualDirector.md`](docs/VisualDirector.md). The script and narrator can be excellent while the video fails creatively. Insert a **Visual Director** planning/asset/creative-QA stage between scripting and Remotion assembly. Show named real people, objects, events and physical processes with accurate sourced/cleared media or explicitly illustrative assets, rather than generic title cards. **ToolPilot blue is not a mandatory content colour**; branding belongs predominantly in approved bumpers, typography, voice and edit style. Use mixed footage, images, caricatures, screenshots, original art, AI visuals and meaningful motion based on story needs. Treat source/likeness truthfulness, media rights and metered generation as blocking approval gates. Keep locked narration while revising visuals. Do not mark a video done merely because audio, script and machine QA pass. This is an approved **design requirement**, not evidence the Visual Director software has been implemented.
+

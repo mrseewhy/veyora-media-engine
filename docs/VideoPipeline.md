@@ -65,3 +65,8 @@ Resolution 1920x1080; expected frame rate; H.264 video/AAC audio; duration withi
 
 ## Future contracts
 Source citations and confidence/review status per factual claim, publishing approval state, retryable job identifiers and channel-specific branding.
+
+
+## Visual Director stage (planned contract, approved 2026-11-23)
+The older short render-stage list above omits the new editorial requirement. Target orchestration is **research with cited claims → script → approved narration take/timing → Visual Director shot list → rights-reviewed/generated assets → shot animatic + creative QA → Remotion/FFmpeg full assembly → native format adaptations → technical/factual/creative QA → human approval**. Mixed footage, photos, illustrations, caricatures, screenshots and short generated motion may be used when story-appropriate. Avoid title-card fallback and no mandatory blue palette. Missing assets or rights yield blocking statuses, never fabricated evidence. Preserve approved narration across visual revisions. Full schema, examples and rollout in [VisualDirector.md](VisualDirector.md). This is **not yet an executable pipeline stage**.
+

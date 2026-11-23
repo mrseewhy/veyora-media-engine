@@ -111,3 +111,10 @@ Run `npm run voice:sample:technical` for a 30-second Gemini Flash technical narr
 
 ## Technical video proof
 Run `npm run video:technical` after generating the 30-second Gemini narration. The video uses six Chrome captures of the original local demo UI in `media/demo/` and exports to `data/technical-video/toolpilot-technical-30s.mp4`. The UI contains illustrative sample metrics, labeled on-screen.
+
+
+## Visual direction update (2026-11-23)
+- [Visual Director and mixed-media editorial standard](docs/VisualDirector.md) sets the **approved target** for imagery, real people, illustrative caricatures, footage, original/AI art, per-shot colour, media rights, and creative QA.
+- The `Singularity Explained` visual feedback established that good narration plus repeated title cards is **not** production quality. ToolPilot blue is optional within content, not a required background; keep brand identity in bumpers, voice, typography and editing.
+- **Status:** specification committed only; Visual Director execution, asset-provider adapters and improved episode renders **remain unimplemented**. See [Tasks](docs/Tasks.md).
+
