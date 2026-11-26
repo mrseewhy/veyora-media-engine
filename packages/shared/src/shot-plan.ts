@@ -10,6 +10,7 @@ export interface ExecutableShot {
   endState: string;
   assetIds: string[];
   sourceAndRights: string;
+  editorialCuts?: Array<{offsetFrames: number; mode: 'photo' | 'detail'; action: string; assetIds: string[]}>;
 }
 
 export interface ShotPlanReport { errors: string[]; warnings: string[] }
@@ -28,6 +29,11 @@ export function validateShotPlan(shots: ExecutableShot[], segmentIds: string[], 
     cursor = shot.endFrame;
     if (!segmentIds.includes(shot.actId)) errors.push(`${shot.shotId}: unknown act`);
     if (!shot.subject || !shot.visualIntent || !shot.action || !shot.assetIds?.length || !shot.sourceAndRights) errors.push(`${shot.shotId}: incomplete production instruction`);
+    let cutCursor = 0;
+    for (const cut of shot.editorialCuts ?? []) {
+      if (!Number.isInteger(cut.offsetFrames) || cut.offsetFrames <= cutCursor || cut.offsetFrames >= shot.endFrame - shot.startFrame || !cut.action || !cut.assetIds?.length) errors.push(`${shot.shotId}: invalid editorial cut`);
+      cutCursor = cut.offsetFrames;
+    }
     if (/^unrevealed shot-specific subject$/i.test(shot.startState) || /^subject or process visibly changed$/i.test(shot.endState)) errors.push(`${shot.shotId}: generic state description cannot drive an action shot`);
   }
   const expected = introFrames + segmentFrames.reduce((a, b) => a + b, 0);

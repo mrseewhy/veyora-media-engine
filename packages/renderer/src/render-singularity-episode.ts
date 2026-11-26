@@ -23,7 +23,7 @@ const shotPlan = JSON.parse(await readFile('episodes/toolpilot/singularity-expla
 const planQa = validateShotPlan(shotPlan.shots, episode.segments.map(s => s.id), narration.items.map(i => i.durationFrames));
 const assetManifest = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/visual-assets.json', 'utf8')) as {assets: Array<{id: string; localPath?: string; sourcePath?: string; sha256?: string; rights: string}>};
 const assets = new Map(assetManifest.assets.map(asset => [asset.id, asset]));
-for (const shot of shotPlan.shots) for (const id of shot.assetIds) {
+for (const shot of shotPlan.shots) for (const id of [...shot.assetIds, ...(shot.editorialCuts ?? []).flatMap(c => c.assetIds)]) {
   const asset = assets.get(id);
   if (!asset) { planQa.errors.push(`${shot.shotId}: undeclared asset ${id}`); continue; }
   if (!asset.rights.startsWith('cleared')) planQa.errors.push(`${id}: rights not cleared`);

@@ -30,7 +30,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 57,
+          "mode": "detail",
+          "action": "Inspect the dated public claim in a close view while keeping attribution legible",
+          "assetIds": [
+            "original-detail-post"
+          ]
+        }
+      ]
     },
     {
       "shotId": "claim-02",
@@ -55,7 +65,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 70,
+          "mode": "detail",
+          "action": "Cut from the whole switch to its moving lever and a separate accelerating path",
+          "assetIds": [
+            "original-detail-switch"
+          ]
+        }
+      ]
     },
     {
       "shotId": "claim-03",
@@ -80,7 +100,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 57,
+          "mode": "detail",
+          "action": "Move from the evidence desk to an actual line-by-line document check",
+          "assetIds": [
+            "original-detail-evidence"
+          ]
+        }
+      ]
     },
     {
       "shotId": "claim-04",
@@ -105,7 +135,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 70,
+          "mode": "detail",
+          "action": "Follow the trajectory until the predicted region becomes obscured",
+          "assetIds": [
+            "original-detail-word"
+          ]
+        }
+      ]
     },
     {
       "shotId": "definition-01",
@@ -130,7 +170,33 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 36,
+          "mode": "photo",
+          "action": "Show a real 1946 computer as the first concrete historical step",
+          "assetIds": [
+            "eniac-us-army"
+          ]
+        },
+        {
+          "offsetFrames": 78,
+          "mode": "photo",
+          "action": "Cut to the 1947 transistor as computing shrinks",
+          "assetIds": [
+            "transistor-windell-oskay"
+          ]
+        },
+        {
+          "offsetFrames": 112,
+          "mode": "photo",
+          "action": "Cut to a modern handheld device to show changed scale",
+          "assetIds": [
+            "smartphone-trent-yarnell"
+          ]
+        }
+      ]
     },
     {
       "shotId": "definition-02",
@@ -155,7 +221,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 74,
+          "mode": "detail",
+          "action": "Move from a route across known terrain to a boundary beyond prediction",
+          "assetIds": [
+            "original-detail-horizon"
+          ]
+        }
+      ]
     },
     {
       "shotId": "definition-03",
@@ -180,7 +256,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 61,
+          "mode": "detail",
+          "action": "Reveal many connected capability domains rather than a single abstract icon",
+          "assetIds": [
+            "original-detail-brain"
+          ]
+        }
+      ]
     },
     {
       "shotId": "definition-04",
@@ -205,7 +291,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 74,
+          "mode": "detail",
+          "action": "Inspect the successor blueprint and the new processor in detail",
+          "assetIds": [
+            "original-detail-design"
+          ]
+        }
+      ]
     },
     {
       "shotId": "feedback-01",
@@ -230,7 +326,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 63,
+          "mode": "detail",
+          "action": "Cut closer to the processor handoff between generations",
+          "assetIds": [
+            "original-detail-successor"
+          ]
+        }
+      ]
     },
     {
       "shotId": "feedback-02",
@@ -255,7 +361,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 78,
+          "mode": "detail",
+          "action": "Observe the successor being evaluated before adoption",
+          "assetIds": [
+            "original-detail-test"
+          ]
+        }
+      ]
     },
     {
       "shotId": "feedback-03",
@@ -280,7 +396,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 63,
+          "mode": "detail",
+          "action": "Show successive machines arriving at shorter intervals",
+          "assetIds": [
+            "original-detail-accelerate"
+          ]
+        }
+      ]
     },
     {
       "shotId": "feedback-04",
@@ -305,7 +431,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 78,
+          "mode": "detail",
+          "action": "Enter three distinct speculative environments branching from the present",
+          "assetIds": [
+            "original-detail-future"
+          ]
+        }
+      ]
     },
     {
       "shotId": "today-01",
@@ -330,7 +466,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 52,
+          "mode": "detail",
+          "action": "Inspect bounded present-day AI tasks on a work surface",
+          "assetIds": [
+            "original-detail-work"
+          ]
+        }
+      ]
     },
     {
       "shotId": "today-02",
@@ -355,7 +501,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 64,
+          "mode": "detail",
+          "action": "Show concrete code, validation, and human approval appearing in sequence",
+          "assetIds": [
+            "original-detail-code"
+          ]
+        }
+      ]
     },
     {
       "shotId": "today-03",
@@ -380,7 +536,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 58,
+          "mode": "photo",
+          "action": "Inspect the real image before the illustrative scanner traverses it",
+          "assetIds": [
+            "cat-robotblanket"
+          ]
+        }
+      ]
     },
     {
       "shotId": "today-04",
@@ -405,7 +571,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 64,
+          "mode": "detail",
+          "action": "Move into the workroom to see human review of the machine output",
+          "assetIds": [
+            "original-detail-people"
+          ]
+        }
+      ]
     },
     {
       "shotId": "today-05",
@@ -430,7 +606,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 60,
+          "mode": "photo",
+          "action": "Cut from the illustrated network to real data-center hardware",
+          "assetIds": [
+            "datacenter-carl-lender"
+          ]
+        }
+      ]
     },
     {
       "shotId": "interpretation-01",
@@ -456,7 +642,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 59,
+          "mode": "detail",
+          "action": "Move from the archival portrait to an illustrative microphone and analogy",
+          "assetIds": [
+            "original-detail-speaker"
+          ]
+        }
+      ]
     },
     {
       "shotId": "interpretation-02",
@@ -481,7 +677,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 73,
+          "mode": "detail",
+          "action": "Move toward the simulated event horizon and dark interior",
+          "assetIds": [
+            "original-detail-blackhole"
+          ]
+        }
+      ]
     },
     {
       "shotId": "interpretation-03",
@@ -506,7 +712,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 59,
+          "mode": "detail",
+          "action": "Move from a route across known terrain to a boundary beyond prediction",
+          "assetIds": [
+            "original-detail-horizon"
+          ]
+        }
+      ]
     },
     {
       "shotId": "interpretation-04",
@@ -531,7 +747,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 73,
+          "mode": "detail",
+          "action": "Split one path into distinct possible futures",
+          "assetIds": [
+            "original-detail-uncertainty"
+          ]
+        }
+      ]
     },
     {
       "shotId": "takeaway-01",
@@ -556,7 +782,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 64,
+          "mode": "detail",
+          "action": "Inspect measured evidence rather than a claim label",
+          "assetIds": [
+            "original-detail-observe"
+          ]
+        }
+      ]
     },
     {
       "shotId": "takeaway-02",
@@ -581,7 +817,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 78,
+          "mode": "detail",
+          "action": "Move through a visible sequence of changed processor generations",
+          "assetIds": [
+            "original-detail-iterate"
+          ]
+        }
+      ]
     },
     {
       "shotId": "takeaway-03",
@@ -606,7 +852,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 74,
+          "mode": "photo",
+          "action": "Cut from a warning in the system to real electrical infrastructure",
+          "assetIds": [
+            "powerlines-charles-devaux"
+          ]
+        }
+      ]
     },
     {
       "shotId": "takeaway-04",
@@ -631,7 +887,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 78,
+          "mode": "detail",
+          "action": "Inspect an unmarked calendar and cross out any implied date",
+          "assetIds": [
+            "original-detail-calendar"
+          ]
+        }
+      ]
     },
     {
       "shotId": "takeaway-05",
@@ -656,7 +922,17 @@
       "sfxCues": [],
       "vocalEffectCues": [],
       "musicCue": null,
-      "reviewStatus": "needs_human_review"
+      "reviewStatus": "needs_human_review",
+      "editorialCuts": [
+        {
+          "offsetFrames": 64,
+          "mode": "detail",
+          "action": "Move from the evidence desk to an actual line-by-line document check",
+          "assetIds": [
+            "original-detail-evidence"
+          ]
+        }
+      ]
     }
   ]
 }

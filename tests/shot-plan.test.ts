@@ -31,5 +31,12 @@ test('Singularity full edit covers the locked narration with concrete actions', 
   assert.deepEqual(report.errors, []);
   assert.equal(plan.shots.length, 26);
   const assets = new Map(manifest.assets.map(a=>[a.id,a]));
-  for(const shot of plan.shots) for(const id of shot.assetIds) assert.ok(assets.get(id)?.rights.startsWith('cleared'), `${shot.shotId}: ${id}`);
+  let visualBeats = 0;
+  for(const shot of plan.shots) {
+    const points = [0,...(shot.editorialCuts ?? []).map(c=>c.offsetFrames),shot.endFrame-shot.startFrame];
+    visualBeats += points.length-1;
+    for(let i=1;i<points.length;i++) assert.ok(points[i]-points[i-1]<=90, `${shot.shotId}: held visual over three seconds`);
+    for(const id of [...shot.assetIds,...(shot.editorialCuts ?? []).flatMap(c=>c.assetIds)]) assert.ok(assets.get(id)?.rights.startsWith('cleared'), `${shot.shotId}: ${id}`);
+  }
+  assert.ok(visualBeats>=50);
 });

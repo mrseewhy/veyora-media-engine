@@ -13,7 +13,7 @@ export async function generateSoundscape(path: string, shots: ExecutableShot[], 
   const actStarts = shots.filter((s,i)=>i===0 || s.actId!==shots[i-1].actId).map(s=>s.startFrame-shots[0].startFrame);
   actStarts.push(contentFrames);
   const chords = [[110,164.81,220],[98,146.83,196],[123.47,185,246.94],[130.81,196,261.63],[92.5,138.59,185],[110,164.81,220]];
-  const cues = shots.map(s => (s.startFrame - 150) / 30).filter(t => t >= 0);
+  const cues = shots.flatMap(s => [s.startFrame, ...(s.editorialCuts ?? []).map(c => s.startFrame+c.offsetFrames)]).map(frame => (frame - shots[0].startFrame) / 30).filter(t => t >= 0);
   let act = 0;
   for (let i = 0; i < count; i++) {
     const t = i / sampleRate;
