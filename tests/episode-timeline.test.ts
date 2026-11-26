@@ -24,4 +24,5 @@ test('intro-first remains available for channel-specific choices', () => {
 
 test('rejects a cold open extending past the first segment', () => {
   assert.throws(() => buildEpisodeTimeline([300], 150, 240, {mode: 'thesis-first', coldOpenFrames: 300}));
+  assert.throws(() => buildEpisodeTimeline([300], 150, 240, {mode: 'thesis-first', coldOpenFrames: 0}));
 });

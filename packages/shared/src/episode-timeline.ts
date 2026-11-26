@@ -16,7 +16,7 @@ export function buildEpisodeTimeline(segmentFrames: number[], introFrames: numbe
   if (!segmentFrames.length || segmentFrames.some(n => !Number.isInteger(n) || n <= 0)) throw new Error('Invalid narration segments');
   if (!Number.isInteger(introFrames) || introFrames < 0 || !Number.isInteger(outroFrames) || outroFrames < 0) throw new Error('Invalid bumper duration');
   const cold = opening.mode === 'thesis-first' ? opening.coldOpenFrames : 0;
-  if (!Number.isInteger(cold) || cold < 0 || cold >= segmentFrames[0]) throw new Error('Cold open must end inside the first narration segment');
+  if (!Number.isInteger(cold) || (opening.mode === 'thesis-first' && cold <= 0) || cold >= segmentFrames[0]) throw new Error('Cold open must end inside the first narration segment');
   const slices: TimelineSlice[] = [];
   if (cold) slices.push({kind: 'content', from: 0, duration: cold, segmentIndex: 0, segmentOffset: 0, contentOffset: 0});
   slices.push({kind: 'intro', from: cold, duration: introFrames});
