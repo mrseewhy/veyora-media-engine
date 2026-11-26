@@ -3,9 +3,10 @@ import {resolve} from 'node:path';
 import sharp from 'sharp';
 import {ffmpegPath, run} from './media-tools.js';
 import type {ExecutableShot} from '../../shared/src/shot-plan.js';
+import {buildEpisodeTimeline, contentFrameToEpisodeFrame, type OpeningPlan} from '../../shared/src/episode-timeline.js';
 
 /** Full-episode visual coverage sampling. Every editorial beat gets a frame. */
-export async function makeShotContactSheet(videoPath: string, shots: ExecutableShot[], outputDir: string, name: string) {
+export async function makeShotContactSheet(videoPath: string, shots: ExecutableShot[], outputDir: string, name: string, episodeFrame = (frame: number) => frame) {
   await mkdir(outputDir, {recursive: true});
   const thumbs: Buffer[] = [];
   const centralPixels: Buffer[] = [];
@@ -15,7 +16,7 @@ export async function makeShotContactSheet(videoPath: string, shots: ExecutableS
     return offsets.slice(0,-1).map((start,i)=>({id:`${shot.shotId}-beat-${i+1}`,atFrame:shot.startFrame+(start+offsets[i+1])/2}));
   });
   for (const beat of beats) {
-    const atSeconds = beat.atFrame / 30;
+    const atSeconds = episodeFrame(beat.atFrame) / 30;
     const framePath = resolve(outputDir, `${name}-${beat.id}.png`);
     await run(ffmpegPath, ['-hide_banner', '-loglevel', 'error', '-y', '-ss', atSeconds.toFixed(3), '-i', videoPath, '-frames:v', '1', framePath]);
     const image = sharp(await readFile(framePath));
@@ -64,8 +65,11 @@ export async function makeShotContactSheet(videoPath: string, shots: ExecutableS
 if (process.argv[1]?.endsWith('shot-contact-sheets.js')) {
   const root = resolve('data/episodes/toolpilot/singularity-explained');
   const plan = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/shot-list.json', 'utf8')) as {shots: ExecutableShot[]};
+  const episode = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/script.json', 'utf8')) as {opening: OpeningPlan};
+  const narration = JSON.parse(await readFile(resolve(root, 'narration-manifest.json'), 'utf8')) as {items: Array<{durationFrames: number}>};
+  const timeline = buildEpisodeTimeline(narration.items.map(item => item.durationFrames), 150, 240, episode.opening);
   for (const format of ['landscape', 'vertical', 'square']) {
-    const result = await makeShotContactSheet(resolve(root, 'final', `singularity-explained-${format}.mp4`), plan.shots, resolve(root, 'qa'), format);
+    const result = await makeShotContactSheet(resolve(root, 'final', `singularity-explained-${format}.mp4`), plan.shots, resolve(root, 'qa'), format, frame => contentFrameToEpisodeFrame(frame - 150, timeline));
     process.stdout.write(`${format}: ${result.sheetPath}; ${result.flags.length} frame flags\n`);
   }
 }

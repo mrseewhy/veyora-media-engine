@@ -5,9 +5,10 @@ import {ToolPilotIntro, TOOLPILOT_INTRO_FRAMES} from './ToolPilotIntro';
 import {ToolPilotOutro, TOOLPILOT_OUTRO_FRAMES} from './ToolPilotOutro';
 import episode from '../../episodes/toolpilot/singularity-explained/script.json';
 import {SingularityStory} from './SingularityStory';
+import {buildEpisodeTimeline, type OpeningPlan} from '../../packages/shared/src/episode-timeline';
 
-export type SingularityProps = {segmentFrames: number[]};
-export const defaultSingularityProps: SingularityProps = {segmentFrames: [540, 540, 540, 540, 540, 540]};
+export type SingularityProps = {segmentFrames: number[]; opening: OpeningPlan};
+export const defaultSingularityProps: SingularityProps = {segmentFrames: [540, 540, 540, 540, 540, 540], opening: episode.opening as OpeningPlan};
 const cyan = '#11e2ed';
 const blue = '#5e82ff';
 const white = '#f7fbff';
@@ -62,20 +63,15 @@ const ContentScene: React.FC<{index: number; duration: number}> = ({index, durat
   </AbsoluteFill>;
 };
 
-export const SingularityEpisode: React.FC<SingularityProps> = ({segmentFrames}) => {
-  let cursor = TOOLPILOT_INTRO_FRAMES;
+export const SingularityEpisode: React.FC<SingularityProps> = ({segmentFrames, opening}) => {
+  const slices = buildEpisodeTimeline(segmentFrames, TOOLPILOT_INTRO_FRAMES, TOOLPILOT_OUTRO_FRAMES, opening);
   return <AbsoluteFill style={{backgroundColor: '#030612'}}>
-    <Sequence from={0} durationInFrames={TOOLPILOT_INTRO_FRAMES}><ToolPilotIntro /></Sequence>
-    <Sequence from={TOOLPILOT_INTRO_FRAMES} durationInFrames={segmentFrames.reduce((a,b)=>a+b,0)}><Audio src={staticFile('generated/singularity-explained/soundscape.wav')} volume={0.35} /></Sequence>
-    {episode.segments.map((segment, index) => {
-      const start = cursor;
-      const duration = segmentFrames[index];
-      cursor += duration;
-      return <Sequence key={segment.id} from={start} durationInFrames={duration} name={segment.id}>
-        <SingularityStory segmentIndex={index} duration={duration} />
-        <Audio src={staticFile(`generated/singularity-explained/${segment.id}.wav`)} />
-      </Sequence>;
-    })}
-    <Sequence from={cursor} durationInFrames={TOOLPILOT_OUTRO_FRAMES}><ToolPilotOutro /></Sequence>
+    {slices.map((slice, index) => <Sequence key={index} from={slice.from} durationInFrames={slice.duration} name={slice.kind}>
+      {slice.kind === 'intro' ? <ToolPilotIntro /> : slice.kind === 'outro' ? <ToolPilotOutro /> : <>
+        <SingularityStory segmentIndex={slice.segmentIndex!} duration={segmentFrames[slice.segmentIndex!]} startAtFrame={slice.segmentOffset} />
+        <Audio src={staticFile(`generated/singularity-explained/${episode.segments[slice.segmentIndex!].id}.wav`)} startFrom={slice.segmentOffset} />
+        <Audio src={staticFile('generated/singularity-explained/soundscape.wav')} startFrom={slice.contentOffset} volume={0.35} />
+      </>}
+    </Sequence>)}
   </AbsoluteFill>;
 };

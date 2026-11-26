@@ -19,7 +19,7 @@
 - Rebuild once as reusable versioned Remotion components, then render a 5-second intro and 8-second outro **for human review before** finalizing the episode.
 - Keep branding assets reusable across episodes. Do not regenerate the motion design every time; only vary platform CTA and aspect-ratio layout.
 - Render native 1920×1080, 1080×1920 and 1080×1080 layouts; use safe areas and original approved logo. Do not simply letterbox a landscape render.
-- Sequence as **intro → content → outro**, without cutting or overlapping narrated content. Audio/music on bumpers must not contain voices. Captions must align to narration inside the content segment, offset by the 5-second intro in the final export.
+- Sequence as **thesis cold open → intro → remaining content → outro** for episodes with an approved hook. Keep the exact five-second, speech-free intro and eight-second outro; split the approved content take only at a configured frame, without regenerating or overlapping speech. Derive captions and soundscape offsets from the episode timeline. An episode without a suitable approved hook must explicitly use `intro-first` until one is approved.
 - Add tests for duration/frame counts, static final 90 frames, platform CTA, absence of bumper speech, no persistent watermark, and total duration.
 - Preserve unrelated regression compositions; don't redesign approved educational scenes without reason.
 

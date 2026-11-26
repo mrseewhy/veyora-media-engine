@@ -15,8 +15,8 @@ const palettes = [
   {accent: '#b84e3e', background: '#3b342b'},
 ];
 
-export const SingularityStory: React.FC<{segmentIndex: number; duration: number}> = ({segmentIndex, duration}) => {
-  const frame = useCurrentFrame();
+export const SingularityStory: React.FC<{segmentIndex: number; duration: number; startAtFrame?: number}> = ({segmentIndex, duration, startAtFrame = 0}) => {
+  const frame = useCurrentFrame() + startAtFrame;
   const {width, height} = useVideoConfig();
   const compact = width / height < 1.5;
   const segment = episode.segments[segmentIndex];

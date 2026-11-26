@@ -4,6 +4,7 @@
   "episodeId": "singularity-explained",
   "configVersion": 1,
   "title": "Did We Reach the Singularity?",
+  "opening": {"mode": "thesis-first", "coldOpenFrames": 258},
   "voice": {"provider": "gemini-3.8-flash-tts", "name": "Puck", "style": "Conversational, witty technology educator. Brisk but articulate, with natural pauses. Curious, clear, and grounded; never theatrical or alarmist."},
   "sources": [
     {"claim": "Musk wrote 'We have entered the Singularity' on January 4, 2026", "url": "https://x.com/elonmusk/status/2007738847397036143"},

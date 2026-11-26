@@ -8,12 +8,14 @@ import {validateVideoQa} from './video-qa.js';
 import {validateShotPlan} from '../../shared/src/shot-plan.js';
 import {normalizeVideoAudio} from './normalize-video-audio.js';
 import {generateSoundscape} from './soundscape.js';
+import {buildEpisodeTimeline, contentFrameToEpisodeFrame, type OpeningPlan} from '../../shared/src/episode-timeline.js';
 
 const root = resolve('data/episodes/toolpilot/singularity-explained');
 const episode = JSON.parse(await readFile('episodes/toolpilot/singularity-explained/script.json', 'utf8')) as {
   channelId: string; seriesId: string; episodeId: string; configVersion: number;
   title: string; sources: Array<{claim: string; url: string}>;
   segments: Array<{id: string; text: string}>;
+  opening: OpeningPlan;
 };
 const narration = JSON.parse(await readFile(resolve(root, 'narration-manifest.json'), 'utf8')) as {
   contentFrames: number; items: Array<{id: string; durationFrames: number; audioPath: string; sha256: string}>;
@@ -40,6 +42,7 @@ for (const item of narration.items) {
   if (actual !== item.sha256) throw new Error(`Locked narration mismatch: ${item.id}`);
 }
 const segmentFrames = narration.items.map((item) => item.durationFrames);
+const timeline = buildEpisodeTimeline(segmentFrames, 150, 240, episode.opening);
 await generateSoundscape(resolve('public/generated/singularity-explained/soundscape.wav'), shotPlan.shots, narration.contentFrames);
 const totalFrames = 150 + narration.contentFrames + 240;
 const formats = [
@@ -52,14 +55,14 @@ await Promise.all(Object.values(paths).map((dir) => mkdir(dir, {recursive: true}
 await writeFile(resolve(paths.qa, 'shot-plan-qa.json'), JSON.stringify({passed: planQa.errors.length === 0, ...planQa, humanReview: 'pending'}, null, 2));
 if (planQa.errors.length) throw new Error(`Shot plan preflight failed: ${planQa.errors.length} errors; see ${resolve(paths.qa, 'shot-plan-qa.json')}`);
 const propsPath = resolve(paths.metadata, 'render-props.json');
-await writeFile(propsPath, JSON.stringify({segmentFrames}));
+await writeFile(propsPath, JSON.stringify({segmentFrames, opening: episode.opening}));
 
 const stamp = (frame: number) => {
   const ms = Math.round(frame * 1000 / 30);
   const h = Math.floor(ms / 3600000), m = Math.floor(ms / 60000) % 60, s = Math.floor(ms / 1000) % 60, part = ms % 1000;
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')},${String(part).padStart(3, '0')}`;
 };
-let cursor = 150;
+let cursor = 0;
 const captions: Array<{startFrame: number; endFrame: number; text: string}> = [];
 for (let i = 0; i < episode.segments.length; i++) {
   const segment = episode.segments[i];
@@ -71,7 +74,13 @@ for (let i = 0; i < episode.segments.length; i++) {
   sentences.forEach((text, n) => {
     const startFrame = cursor + local;
     local += n === sentences.length - 1 ? duration - local : Math.round(duration * weights[n] / totalWords);
-    captions.push({startFrame, endFrame: cursor + local, text});
+    const endFrame = cursor + local;
+    const cold = episode.opening.mode === 'thesis-first' ? episode.opening.coldOpenFrames : 0;
+    const spans = cold && startFrame < cold && endFrame > cold ? [[startFrame, cold], [cold, endFrame]] : [[startFrame, endFrame]];
+    for (const [start, end] of spans) {
+      const mappedStart = contentFrameToEpisodeFrame(start, timeline);
+      captions.push({startFrame: mappedStart, endFrame: mappedStart + end - start, text});
+    }
   });
   cursor += duration;
 }
@@ -97,7 +106,7 @@ for (const format of formats) {
   const checks = [...qa.checks, {id: 'loudness', label: 'Integrated loudness / true peak', passed: loudnessPassed, detail: audioStats ? `${audioStats.input_i} LUFS / ${audioStats.input_tp} dBTP` : 'missing'}];
   const thumbs = [];
   for (let n = 0; n < 8; n++) {
-    const at = (5 + (n + 0.5) * (narration.contentFrames / 30) / 8).toFixed(2);
+    const at = (contentFrameToEpisodeFrame(Math.floor((n + 0.5) * narration.contentFrames / 8), timeline) / 30).toFixed(2);
     const framePath = resolve(paths.qa, `${format.name}-frame-${n}.png`);
     await run(ffmpegPath, ['-hide_banner', '-loglevel', 'error', '-y', '-ss', at, '-i', videoPath, '-frames:v', '1', framePath]);
     thumbs.push(await sharp(framePath).resize({width: 400}).png().toBuffer());
@@ -111,7 +120,7 @@ for (const format of formats) {
   artifacts.push(result);
   if (!result.qaPassed) console.error(`QA failed: ${format.name}`);
 }
-const report = {channelId: episode.channelId, seriesId: episode.seriesId, episodeId: episode.episodeId, format: 'three-native-formats', configVersion: episode.configVersion, title: episode.title, durationFrames: totalFrames, contentFrames: narration.contentFrames, sources: episode.sources, narration, visualAssets: assetManifest.assets, captionsPath: resolve(paths.captions, 'singularity-explained.srt'), captionsTiming: 'sentence timing estimated from word proportions within measured narration segments; human sync review required', artifacts, humanReviewStatus: 'proposed'};
+const report = {channelId: episode.channelId, seriesId: episode.seriesId, episodeId: episode.episodeId, format: 'three-native-formats', configVersion: episode.configVersion, title: episode.title, opening: episode.opening, timeline, durationFrames: totalFrames, contentFrames: narration.contentFrames, sources: episode.sources, narration, visualAssets: assetManifest.assets, captionsPath: resolve(paths.captions, 'singularity-explained.srt'), captionsTiming: 'sentence timing estimated from word proportions within measured narration segments; human sync review required', artifacts, humanReviewStatus: 'proposed'};
 await writeFile(resolve(paths.metadata, 'artifact-manifest.json'), JSON.stringify(report, null, 2));
 await writeFile(resolve(paths.metadata, 'production-report.md'), `# ${episode.title}\n\nTotal: ${(totalFrames / 30).toFixed(2)} seconds; content: ${(narration.contentFrames / 30).toFixed(2)} seconds.\n\nNarrator: Gemini Flash TTS / Puck, operator-approved sample.\n\nQA: ${artifacts.filter((a) => a.qaPassed).length}/3 format checks passed. Caption sentence timing is estimated and requires human sync review. Visual and factual approval remain pending.\n\nSources:\n${episode.sources.map((s) => `- ${s.claim}: ${s.url}`).join('\n')}\n`);
 if (artifacts.some((a) => !a.qaPassed)) process.exitCode = 1;
