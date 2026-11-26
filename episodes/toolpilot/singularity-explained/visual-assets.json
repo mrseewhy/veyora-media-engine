@@ -621,6 +621,36 @@
       "attributionRequired": false
     },
     {
+      "id": "pcb-img4512",
+      "kind": "licensed_photo",
+      "localPath": "public/generated/singularity-explained/pcb-img4512.jpg",
+      "sha256": "e833dfe885bbb08d85f091d452a0b4fb7182c7b8a08eff103ac49522597c9d46",
+      "creator": "IMG 4512",
+      "title": "Printed circuit boards 20240831 083726",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Printed_circuit_boards_20240831_083726.jpg",
+      "license": "CC0 1.0",
+      "rights": "cleared",
+      "factualStatus": "Authentic electronics photograph used as illustrative hardware context; not an AI system",
+      "cost": 0,
+      "attributionRequired": false,
+      "attribution": "Photo: IMG 4512 / Wikimedia Commons, CC0 1.0. Cropped in an illustrative collage."
+    },
+    {
+      "id": "robot-line-clemenspool",
+      "kind": "licensed_photo",
+      "localPath": "public/generated/singularity-explained/robot-line-clemenspool.jpg",
+      "sha256": "049cc075e9974e477632c49c95421764bca0b826c09b040a45c1f1a90a8a73ab",
+      "creator": "Clemenspool",
+      "title": "Staeubli Robots line",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Staeubli_Robots_line.jpg",
+      "license": "CC0 1.0",
+      "rights": "cleared",
+      "factualStatus": "Authentic industrial robots used as illustrative assembly context; not footage of AI self-improvement",
+      "cost": 0,
+      "attributionRequired": false,
+      "attribution": "Photo: Clemenspool / Wikimedia Commons, CC0 1.0. Cropped in an illustrative collage."
+    },
+    {
       "id": "cat-robotblanket",
       "kind": "licensed_photo",
       "localPath": "public/generated/singularity-explained/cat-robotblanket.jpg",

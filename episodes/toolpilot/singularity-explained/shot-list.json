@@ -282,7 +282,8 @@
       "action": "Assembly arm installs a new processor",
       "endState": "Successor system is physically assembled",
       "assetIds": [
-        "original-react-svg-design"
+        "original-react-svg-design",
+        "pcb-img4512"
       ],
       "sourceAndRights": "Original animated React/SVG illustration by Veyora Media Engine; conceptual depiction, no external media",
       "camera": "factory tracking",
@@ -295,10 +296,10 @@
       "editorialCuts": [
         {
           "offsetFrames": 74,
-          "mode": "detail",
-          "action": "Inspect the successor blueprint and the new processor in detail",
+          "mode": "photo",
+          "action": "Inspect real circuit-board hardware as illustrative physical context for the hypothetical successor design",
           "assetIds": [
-            "original-detail-design"
+            "pcb-img4512"
           ]
         }
       ]
@@ -317,7 +318,8 @@
       "action": "Assembly arm builds and powers a second unit",
       "endState": "A more capable successor takes over",
       "assetIds": [
-        "original-react-svg-successor"
+        "original-react-svg-successor",
+        "robot-line-clemenspool"
       ],
       "sourceAndRights": "Original animated React/SVG illustration by Veyora Media Engine; conceptual depiction, no external media",
       "camera": "factory close-up",
@@ -330,10 +332,10 @@
       "editorialCuts": [
         {
           "offsetFrames": 63,
-          "mode": "detail",
-          "action": "Cut closer to the processor handoff between generations",
+          "mode": "photo",
+          "action": "Cut to a real assembly line as clearly labeled illustrative context for a successor build",
           "assetIds": [
-            "original-detail-successor"
+            "robot-line-clemenspool"
           ]
         }
       ]
